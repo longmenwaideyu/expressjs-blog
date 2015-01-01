@@ -59,7 +59,8 @@ margin-right: 10px;
   margin-left: -15px;
   margin-right: -15px;
   border-left: 3px solid #00BCF2;
-  width: 100%;
+  //width: 100%;
+  display:block;
 }
 .blog-wrap {
   padding-left: 10px;

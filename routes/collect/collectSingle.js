@@ -12,9 +12,17 @@ router.get('/collect/cid/:id', function(req, res) {
         }
         Blog.findByArticleIDs(article, function (art) {
             art = util.getAbstract(art);
+            var articleMap = {};
+            for (var i = art.length - 1; i >= 0; i--) {
+                articleMap[art[i].articleID] = i;
+            };
+            var doc = [];
+            for (var i = article.length - 1; i >= 0; i--) {
+                doc.push(art[articleMap[article[i]]]);
+            };
             res.render('collect/collectSingle', {
                 title: collect,
-                article: art,
+                article: doc,
                 collect: collect
             });
         })

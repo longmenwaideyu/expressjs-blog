@@ -20,3 +20,6 @@ expressjs-blog
     npm install
     node server.js
 注mongodb默认不能远程连接，如果需要远程连接，要更改mongo的配置。如果在本机连接，dbUser,dbPass不要填。
+###5.到 /register 下注册
+注册成功之后注释掉useRoutes.js的63-66行。
+###6.到 /admin下管理博客

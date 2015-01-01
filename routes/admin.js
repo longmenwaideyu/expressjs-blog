@@ -6,7 +6,7 @@ var util = require('../common/util');
 var async = require('async');
 router.get('/admin', function(req, res) {
     if (!req.session.isMe) {
-        res.end();
+        res.redirect('/login');
         return;
     }
     async.series([

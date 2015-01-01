@@ -25,7 +25,7 @@ ReplySchema.plugin(autoinc.plugin, {
 });
 ReplySchema.statics.findRecentExecptAdmin = function (admin, callback) {
     return this.model('Reply')
-        .find({ articleID: { '$nin': admin } })
+        .find({ articleID: { '$nin': [ admin ] } })
         .sort({ replyTime: -1 })
         .exec(function (error, doc) {
             if (error) {

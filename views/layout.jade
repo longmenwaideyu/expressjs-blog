@@ -26,6 +26,9 @@ html
                 div.navbar-header
                     a(class='navbar-brand', href='/') 首页
                     a(class='navbar-brand', href='/collect') 文集
+                    if isMe
+                        a(class='navbar-brand', href='/admin' alt="管理页")
+                            span.glyphicon.glyphicon-user
         div.container
             block content
         footer.footer
@@ -33,11 +36,19 @@ html
                 div.row
                     div.col-sm-6
                         h3 关于我
-                        a(href='http://blog.discussquiz.com' target="_blank") 作者
+                        a(href='http://hi.baidu.com/longmenwaideyu' target="_blank") 百度博客
                         p longmenwaideyu[at]126[dot]com
                     div.col-sm-6
                         h3 友情连接
                         span.footer-col
-                            a(href='http://blog.discussquiz.com' target="_blank") 作者博客
+                            a(href='http://hi.baidu.com/longmenwaideyu' target="_blank") 百度博客
+                        span.footer-col
+                            a(href='http://www.wuchengbin.cn' target="_blank") binwin20
+                        span.footer-col
+                            a(href='http://xiao233.com/' target="_blank") 肖太爷
+                        span.footer-col
+                            a(href='http://www.daimayu.com/' target="_blank") taozifish
+                div.row.text-center
+                    a(href='http://www.miibeian.gov.cn/' target="_blank") 京ICP备14061023号
 
 
