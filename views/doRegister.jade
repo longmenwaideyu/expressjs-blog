@@ -1,0 +1,13 @@
+﻿extends layout
+block cssjs
+    if fr
+        script(type="text/javascript").
+            setTimeout(function () {
+                var href = '#{fr}';
+                if (!href) href = '/';
+                window.location.href = href;
+            }, 1000);
+block content
+    div.row.text-center.bg-info
+        h3= info
+

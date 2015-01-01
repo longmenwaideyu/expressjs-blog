@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    div.row
+        div.col-sm-8
+            each val in doc
+                div.blog-container
+                    div.blog-title
+                        a(href='/article/#{val.articleID}')= val.title
+                    div.blog-wrap.blog-abstract-info
+                        span.col-sm-6.blog-info= val.createTime1
+                        span.col-sm-2.blog-info= '翻牌: ' + val.browse
+                        span.col-sm-2.blog-info= '临幸: ' + val.reply
+                        div.col-sm-6
+                            span.blog-tag.glyphicon.glyphicon-tag
+                            each tag in val.tagArr
+                                a(href='/tag/#{tag}').blog-tag= tag
+                        div.col-sm-6
+                            span.blog-tag.glyphicon.glyphicon-folder-open
+                            each c in val.collectArr
+                                a(href='/collect/cid/#{c}').blog-tag= c
+                    div.blog-abstract!= val.content
+                    div.blog-bottom
+                        a.more-link(href='/article/#{val.articleID}') more
+            div.page
+                ul(class="pagination")
+                    if curPage != 1
+                        li
+                            a(href="/?page=#{curPage - 1}") &laquo;
+                    else
+                        li.disabled
+                            a(href="javascript:void(0)") &laquo;
+                    -for (var i = 1; i <= totPage; i++)
+                        if curPage == i
+                            li.active
+                                a(href='/?page=#{i}')= i
+                        else
+                            li
+                                a(href='/?page=#{i}')= i
+                    if curPage < totPage
+                        li
+                            a(href="/?page=#{curPage + 1}") &raquo;
+                    else
+                        li.disabled
+                            a(href="javascript:void(0)") &raquo;
+        div.col-sm-4.hidden-xs
+            include ./sidebar.jade

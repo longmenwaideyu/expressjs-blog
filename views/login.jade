@@ -1,0 +1,27 @@
+extends layout
+block cssjs
+    link(rel='stylesheet', href='/css/register.css')
+    script(type="text/javascript", src="/js/jquery.md5.js")
+    script(type="text/javascript").
+        function check() {
+            var pwd = $('#password').val();
+            if (!pwd) {
+                alert('请输入密码');
+                return false;
+            }
+            var userID = $('#userID').val();
+            if (!userID) {
+                alert('请输入用户名');
+                return false;
+            }
+            $('#fr').val(getQueryString('fr'));
+            $('#password').val($.md5(pwd));
+            return true;
+        }
+block content
+    form.form-signin(role='form', id='loginform' name='loginform', action='/doLogin' onsubmit='javascript: return check()')
+        h4.form-signin-heading 登录:
+        input(type='text', id='userID' name='userID', class='form-control', placeholder='用户名', required autofocus)
+        input(type='password', id='password' name='password', class='form-control', placeholder='密码', required)
+        input(type='text', id='fr' name='fr', class='hide')
+        button(type='submit', class='btn btn-lg btn-primary btn-block') 登录

@@ -1,0 +1,28 @@
+extends ../layout
+
+block cssjs
+    script(src = "/js/collect.js")
+block content
+    div.collect-container
+        form(class = 'form-horizontal' action = '/collect/doEdit' onsubmit='javascript: return check();')
+            div.form-group
+                label(class="col-sm-2 control-label" for = "collectID") 选择文集:
+                div.col-sm-8(id = 'collect-c')
+                    select.form-control(id = 'collect' name = 'collect')
+                        option(value = '') 请选择文集
+                        each v in collect
+                            option(value = '#{v.collect}')= v.collect
+                div.col-sm-2
+                    button(id = 'newCollect').btn.btn-primary.btn-block 新建文集
+            div.form-group(id = 'collectDetail')
+            div.form-group
+                div.col-sm-offset-8.col-sm-2
+                    input.btn.btn-primary.btn-block(type = 'button' value = '添加文章' id = 'add')/
+                div.col-sm-2
+                    input.btn.btn-primary.btn-block(type = 'submit' value = '提交' id = 'submit')/
+        div(id="addContainer" style="display:none")
+            select.collect-article.form-control(id = 'article' multiple size="20")
+                each val in article
+                    option(value = "#{val.articleID}")= val.title
+            div.col-sm-2.col-sm-offset-10
+                button.btn.btn-primary.btn-block(id="addbtn") 确定

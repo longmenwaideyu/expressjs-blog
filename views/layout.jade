@@ -1,0 +1,43 @@
+doctype html
+html
+    head
+        title= title
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        link(rel='icon', href = '/images/favicon.jpg')
+        link(rel='stylesheet', href='/bootcss/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/style.css')
+        script(src='/js/jquery-1.11.1.min.js')
+        script(src='/bootcss/js/bootstrap.min.js')
+        script(src='/js/myjs.js')
+        script.
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?e978c3ef577f265dd2fe397ed3c7b53d";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        block cssjs
+    body
+        nav(role='navigation').navbar.navbar-default.navbar-fixed-top
+            div.container
+                div.navbar-header
+                    a(class='navbar-brand', href='/') 首页
+                    a(class='navbar-brand', href='/collect') 文集
+        div.container
+            block content
+        footer.footer
+            div.container
+                div.row
+                    div.col-sm-6
+                        h3 关于我
+                        a(href='http://blog.discussquiz.com' target="_blank") 作者
+                        p longmenwaideyu[at]126[dot]com
+                    div.col-sm-6
+                        h3 友情连接
+                        span.footer-col
+                            a(href='http://blog.discussquiz.com' target="_blank") 作者博客
+
+

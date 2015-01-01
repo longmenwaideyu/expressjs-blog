@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    div.row.admin-title
+        div.col-sm-4
+            a.btn.btn-primary.btn-block(href='/new') 写博客
+        div.col-sm-4
+            a.btn.btn-primary.btn-block(href='/collect/edit') 编辑文集
+    div.row
+        div.admin-title
+            h3 最近回复
+        div.admin-box
+            ul.admin-ul
+                each val in reply
+                    li.admin-li
+                        p #{val.nick} 在 《#{val.article}》 对 #{val.replyWhoNick} 说:
+                        span!= val.content
+                        p
+                            a(href='/article/#{val.articleID}?replyID=#{val.replyID}') 查看
+        div.admin-title
+            h3 文章列表
+        div.admin-box
+            ul.admin-ul
+                each val in doc
+                    li.admin-li
+                        p
+                            span
+                                a(href='/article/#{val.articleID}')= val.title
+                            span.admin-edit
+                                a(href='/edit?articleID=#{val.articleID}') 编辑

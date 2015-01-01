@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    div.row
+        div.collectsingle-container
+            div.collectsingle-title= collect
+            each v, index in article
+                div.collectsingle-wrap
+                    div.collectsingle-article-title
+                        =(index + 1) +'. '
+                        a(href='/article/#{v.articleID}')= v.title
+                    div.collectsingle-abstract
+                        div!= v.content

@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    div.row
+        div.col-sm-8
+            each val in doc
+                div.blog-container
+                    div.blog-title
+                        a(href='/collect/cid/#{val.collect}')= val.collect
+                    div.blog-wrap
+                        each v,index in val.article
+                            div.collect-article-title
+                                =(index + 1) +'. ' 
+                                a(href='/article/#{v.articleID}')= v.title
+        div.col-sm-4.hidden-xs
+            include ../sidebar.jade

@@ -1,0 +1,51 @@
+extends ../layout
+block cssjs
+    script(type="text/javascript", src="/ueditor/ueditor.config.js")
+    script(type="text/javascript", src="/ueditor/ueditor.all.min.js")
+    script(type="text/javascript", charset='utf-8' src="/ueditor/lang/zh-cn/zh-cn.js")
+    script(type="text/javascript").
+        function check() {
+            $('#submit').attr("disabled","true");
+            var title = $('#s-title').val().trim();
+            var content = UE.getEditor('editor').getContent().trim();
+            if (!title) {
+                alert('请输入标题');
+                $('#submit').attr("disabled", false);
+                return false
+            }
+            if ($('<div>' + content + '</div>').text().trim().length <= 20) {
+                alert('请输入博客内容，至少20字');
+                $('#submit').attr("disabled", false);
+                return false;
+            }
+            $('#title').val(title);
+            $('#content').val(content);
+            return true;
+        }
+block content
+    if user && user.auth == 255
+        if error
+            div.row.text-center.bg-info
+                h4= error
+        div.row
+            div(class='col-sm-2 new-title') 标题
+            div.col-sm-8
+                input(type='text' id='s-title' value = '#{data.title}').form-control
+        div.row
+            <script id="editor" type="text/plain" style="width:100%;height:700px;"></script>
+        form(name='blog-submit' id = 'blog-submit' action='#{action}' onsubmit='javascript: return check()')
+            input.hide(type = 'text', name = 'articleID' value = '#{data.articleID}')
+            input.hide(type = 'text' id = 'title' name = 'title')
+            div.row.text-left
+                div(class = 'col-sm-1 blog-tag new-title') 标签
+                div.col-sm-5
+                    input(type = 'text' value = '#{data.tag}' id = 'tag' name = 'tag' placeholder = '添加标签，以空格隔开' alt='添加标签，以空格隔开').form-control
+                div.col-sm-1
+                    input.btn.btn-primary.btn-block(type = 'submit' id = 'submit' value = '提交')
+            textarea.hide(id = 'content' name = 'content')= data.content
+        script(type='text/javascript').
+            var ue = UE.getEditor('editor');
+            setTimeout(function(){
+                ue.setContent($('#content').text());
+            }, 2000);
+            
