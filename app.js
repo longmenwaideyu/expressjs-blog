@@ -57,7 +57,9 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-mongoose.connect('mongodb://' + config.dbUser + ':' + config.dbPass + '@' + config.dbAddress + '/' +config.dbName);  //2
- 
+if (!config.dbUser) {
+    mongoose.connect('mongodb://' + config.dbAddress + '/' +config.dbName);
+} else {
+    mongoose.connect('mongodb://' + config.dbUser + ':' + config.dbPass + '@' + config.dbAddress + '/' +config.dbName);
+}
 module.exports = app;
-//http://localhost:3000/blog/%5Cuploadimage%5Clongmenwaideyu%5C544331125896646656.jpg
