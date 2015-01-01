@@ -22,6 +22,6 @@ expressjs-blog
     node server.js
 ###5.到 /register 下注册
 注册成功之后注释掉useRoutes.js的63-66行。
-###6.到 /admin下管理博客
+###6.到 /admin 下管理博客
 ##作者个人博客
 [www.thinkspring.cn](http://www.thinkspring.cn)
