@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Blog = require('../../models/blog');
 var Reply = require('../../models/reply');
+var Tag = require('../../models/tag');
+var Collect = require('../../models/collect');
 var util = require('../../common/util');
 var async = require('async');
 function fail(req, res, data) {
@@ -70,12 +72,24 @@ router.get('/article/:id', function(req, res) {
             recordVisit(id, function () {
                 callback(null, doc, reply);
             });
+        },
+        function (doc, reply, callback){
+            Tag.findAllTag(function (tag) {
+                callback(null, doc, reply, tag);
+            });
+        },
+        function (doc, reply, tag, callback) {
+            Collect.findAllCollect(function (collect) {
+                callback(null, doc, reply, tag, collect);
+            });
         }
-    ], function (err, doc, reply) {
+    ], function (err, doc, reply, tag, collect) {
         res.render('blog/article', {
             title: doc.title,
             doc: doc,
             reply: reply,
+            tag: tag,
+            collect: collect,
             isMe: req.session.isMe,
             replyID: req.query.replyID
         });

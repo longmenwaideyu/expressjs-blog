@@ -13,75 +13,79 @@ block content
         div.row.text-center
             h4 #{doc.data}
                 a(href='/') 去看看其他文章吧
-    else 
-        div.row.text-center
-            h3= doc.title
+    else
         div.row
-            div.col-sm-4
-                span.blog-tag.glyphicon.glyphicon-tags
-                each tag in doc.tagArr
-                    a(href='/tag/#{tag}').blog-tag= tag
-            div.col-sm-4
-                span.blog-tag.glyphicon.glyphicon-folder-open
-                each c in doc.collectArr
-                    a(href='/collect/cid/#{c}').blog-tag= c
-            div.col-sm-4.text-right
-                span.article-info 发表时间: #{doc.createTime1}
-        div.row.article!= doc.content
-        div.row
-            span.article-info 翻牌: #{doc.browse} 
-            span.article-info 临幸: #{doc.reply}
-        div.row
-            div.article-liuyan 留言:
-        div.article-reply-container
-            each val in reply
-                div.article-floor
-                    div.article-reply-info
-                        div.col-sm-8
-                            a(href = '#{val.website}' target = '_blank')= val.nick
-                            |  说:
-                        div.col-sm-4.text-right.article-reply-time= val.replyTime1
-                    div.article-reply-content!= val.content
-                    each r in val.replyArr
-                        div.article-reply-floor
+            div.col-sm-8
+                div.row.text-center
+                    h3= doc.title
+                div.row
+                    div.col-sm-4
+                        span.blog-tag.glyphicon.glyphicon-tags
+                        each tag in doc.tagArr
+                            a(href='/tag/#{tag}').blog-tag= tag
+                    div.col-sm-4
+                        span.blog-tag.glyphicon.glyphicon-folder-open
+                        each c in doc.collectArr
+                            a(href='/collect/cid/#{c}').blog-tag= c
+                    div.col-sm-4.text-right
+                        span.article-info 发表时间: #{doc.createTime1}
+                div.row.article!= doc.content
+                div.row.text-center
+                    span.article-info 翻牌: #{doc.browse}&nbsp;&nbsp;
+                    span.article-info 临幸: #{doc.reply}
+                div.row
+                    div.article-liuyan 留言:
+                div.article-reply-container
+                    each val in reply
+                        div.article-floor
                             div.article-reply-info
                                 div.col-sm-8
-                                    a(href = '#{r.website}' target = '_blank')= r.nick
-                                    |  回复:  #{r.replyWhoNick}
-                                div.col-sm-4.text-right.article-reply-time= r.replyTime1
-                            div.article-reply-content!= r.content
+                                    a(href = '#{val.website}' target = '_blank')= val.nick
+                                    |  说:
+                                div.col-sm-4.text-right.article-reply-time= val.replyTime1
+                            div.article-reply-content!= val.content
+                            each r in val.replyArr
+                                div.article-reply-floor
+                                    div.article-reply-info
+                                        div.col-sm-8
+                                            a(href = '#{r.website}' target = '_blank')= r.nick
+                                            |  回复:  #{r.replyWhoNick}
+                                        div.col-sm-4.text-right.article-reply-time= r.replyTime1
+                                    div.article-reply-content!= r.content
+                                    div
+                                        div.col-sm-1
+                                            button.btn.btn-default.btn-xs(id = 'reply-#{r.replyID}' 
+                                                replyWhoID = '#{r.replyID}' replyFloor = '#{val.replyID}'
+                                                replyWhoNick = '#{r.nick}' replyWhoWebsite = '#{r.website}'
+                                                articleID = '#{doc.articleID}'
+                                                ) 回复
+                                    div.hide(id = 'container-#{r.replyID}')
                             div
                                 div.col-sm-1
-                                    button.btn.btn-default.btn-xs(id = 'reply-#{r.replyID}' 
-                                        replyWhoID = '#{r.replyID}' replyFloor = '#{val.replyID}'
-                                        replyWhoNick = '#{r.nick}' replyWhoWebsite = '#{r.website}'
+                                    button.btn.btn-primary.btn-xs(id = 'reply-#{val.replyID}' 
+                                        replyWhoID = '#{val.replyID}' replyFloor = '#{val.replyID}'
+                                        replyWhoNick = '#{val.nick}' replyWhoWebsite = '#{val.website}'
                                         articleID = '#{doc.articleID}'
                                         ) 回复
-                            div.hide(id = 'container-#{r.replyID}')
-                    div
-                        div.col-sm-1
-                            button.btn.btn-primary.btn-xs(id = 'reply-#{val.replyID}' 
-                                replyWhoID = '#{val.replyID}' replyFloor = '#{val.replyID}'
-                                replyWhoNick = '#{val.nick}' replyWhoWebsite = '#{val.website}'
-                                articleID = '#{doc.articleID}'
-                                ) 回复
-                    div.hide(id = 'container-#{val.replyID}')
-        form(class = 'form-horizontal article-reply row' action = '/reply' onsubmit='javascript: return check();')
-            div.form-group
-                label(for = 'nick' class = 'col-sm-2 control-label') 昵称:
-                div.col-sm-10
-                    input(type = 'text' id = 'nick' name = 'nick' placeholder = '输入显示的昵称').form-control
-            div.form-group
-                label(for = 'email' class = 'col-sm-2 control-label') 邮箱:
-                div.col-sm-10
-                    input(type = 'text' id = 'email' name = 'email' placeholder = '输入邮箱，不公开').form-control
-            div.form-group
-                label(for = 'website' class = 'col-sm-2 control-label') 网址:
-                div.col-sm-10
-                    input(type = 'text' id = 'website' name = 'website' placeholder = '输入个人网站，可不填').form-control
-            script(id="editor" type="text/plain" style="width:100%;height:250px;")
-            input.hide(type = 'text' id = 'articleID' name = 'articleID' value = '#{doc.articleID}')/
-            div.row
-                div.col-sm-offset-10.col-sm-2
-                    input(type = 'submit' class = 'btn btn-primary btn-block' id = 'reply-000' value = '提交')/
+                            div.hide(id = 'container-#{val.replyID}')
+                form(class = 'form-horizontal article-reply row' action = '/reply' onsubmit='javascript: return check();')
+                    div.form-group
+                        label(for = 'nick' class = 'col-sm-2 control-label') 昵称:
+                        div.col-sm-10
+                            input(type = 'text' id = 'nick' name = 'nick' placeholder = '输入显示的昵称').form-control
+                    div.form-group
+                        label(for = 'email' class = 'col-sm-2 control-label') 邮箱:
+                        div.col-sm-10
+                            input(type = 'text' id = 'email' name = 'email' placeholder = '输入邮箱，不公开').form-control
+                    div.form-group
+                        label(for = 'website' class = 'col-sm-2 control-label') 网址:
+                        div.col-sm-10
+                            input(type = 'text' id = 'website' name = 'website' placeholder = '输入个人网站，可不填').form-control
+                    script(id="editor" type="text/plain" style="width:100%;height:250px;")
+                    input.hide(type = 'text' id = 'articleID' name = 'articleID' value = '#{doc.articleID}')/
+                    div.row
+                        div.col-sm-offset-10.col-sm-2
+                            input(type = 'submit' class = 'btn btn-primary btn-block' id = 'reply-000' value = '提交')/
+            div.col-sm-4.hidden-xs
+                include ../sidebar.jade
         script(type ='text/javascript' src = '/js/article.js')

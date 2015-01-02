@@ -105,6 +105,7 @@ function genList(data) {
         +   '</div>';
     var res = '';
     for (var i = 0; i < len; i++) {
+        data[i].seq = i + 1;
         res += tpl.render(s, data[i]);
     }
     $('#collectDetail').append(res);

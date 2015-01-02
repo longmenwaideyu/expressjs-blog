@@ -42,7 +42,6 @@ router.get('/', function(req, res) {
                 var params = fr.split('?');
                 fr = params.join('?');
                 res.redirect(fr);
-                //res.render('doLogin', { title: '登录-思春网', active: 'login', info: '登录成功', succ: true, fr: fr });
             } else {
                 var data = '密码错误';
                 fail(res, data);

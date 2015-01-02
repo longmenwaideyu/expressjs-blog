@@ -25,10 +25,8 @@ router.get('/edit', function(req, res) {
     val.title = val.title ? unescape(val.title) : '';
     val.tag = val.tag ? unescape(val.tag) : '';
     val.content = val.content ? unescape(val.content) : '';
-    //val.content = val.content.replace(/\r\n/g, '');
     if (!val.title) {
         Blog.findByArticleID(val.articleID, function (doc) {
-            //doc.content = doc.content.replace(/\r\n/g, '');
             process(req, res, doc);
         });
     } else {

@@ -240,7 +240,6 @@ margin-right: 10px;
 .article-reply-container {
   border-bottom: 2px solid #eee;
   border-top: 1px solid #eee;
-  max-width: 900px;
   margin: 20px auto;
 }
 .article-input {
@@ -248,7 +247,7 @@ margin-right: 10px;
 }
 .article {
   border-top: 2px solid #3399FF;
-  border-bottom: 2px solid #3399FF;
+  border-bottom: 1px solid #3399FF;
   border-radius: 2px;
   word-wrap: break-word;
   word-break: normal; 

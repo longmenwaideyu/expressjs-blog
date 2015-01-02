@@ -13,7 +13,7 @@ var ReplySchema = new Schema({
     replyWhoWebsite: { type: String },
     replyFloor: { type: Number },
     isPass: { type: Number, default: 1 },
-    userID: { type: String, default: ''},
+    userID: { type: String, default: '' },
     replyTime: { type: Date, default: Date.now }
 });
 
