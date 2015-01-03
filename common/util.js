@@ -14,6 +14,34 @@ util.getDate =  function (date) {
         + d.getSeconds();
     return ret;
 }
+util.getSEODescription = function (doc) {
+    var $ = cheerio.load(doc.content);
+    var id = [
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'strong'
+    ];
+    var ret = doc.title + ',';
+    for (var i = 0; i < id.length; i++) {
+        var t = $(id[i]).text().trim();
+        if (t) {
+            ret += t + ',';
+        }
+        if (ret.length > 155) break;
+    }
+    return ret;
+}
+util.getSEOKeywords = function (doc) {
+    return doc.tag + ' ' + doc.title;
+}
+util.getSEO = function (doc) {
+    var seo = {};
+    seo.keywords = util.getSEOKeywords(doc);
+    seo.description = util.getSEODescription(doc);
+    return seo;
+}
 util.getAbstract = function (doc) {
     for (var i = doc.length - 1; i >= 0; i--) {
         var $ = cheerio.load(doc[i].content);

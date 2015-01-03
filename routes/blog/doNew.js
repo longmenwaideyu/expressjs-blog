@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Blog = require('../../models/blog');
 var Tag = require('../../models/tag');
+var util = require('../../common/util');
 function saveTag(data, articleID, res) {
     if (articleID == -1) {
         res.redirect('/new?err=文章飞了！去博客中找找&' + params);
@@ -39,6 +40,9 @@ router.get('/doNew', function(req, res) {
         return;
     }
     val.userID = req.session.userInfo.userID;
+    val.seoKeywords = util.getSEOKeywords(val)
+    val.seoDescription = util.getSEODescription(val);
+    val.state = 1;
     delete val.articleID;
     Blog.create(val, function (error) {
         if (error) {

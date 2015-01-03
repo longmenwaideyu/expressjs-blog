@@ -9,30 +9,30 @@ block cssjs
     script(type='text/javascript' src = '/syntaxhighlighter/scripts/shAutoloader.js')
     link(rel='stylesheet' href = '/syntaxhighlighter/styles/shCoreMidnight.css')
 block content
-    if doc.noArticle
+    if article.noArticle
         div.row.text-center
-            h4 #{doc.data}
+            h4 #{article.data}
                 a(href='/') 去看看其他文章吧
     else
         div.row
             div.col-sm-8
                 div.row.text-center
-                    h3= doc.title
+                    h3= article.title
                 div.row
                     div.col-sm-4
                         span.blog-tag.glyphicon.glyphicon-tags
-                        each tag in doc.tagArr
+                        each tag in article.tagArr
                             a(href='/tag/#{tag}').blog-tag= tag
                     div.col-sm-4
                         span.blog-tag.glyphicon.glyphicon-folder-open
-                        each c in doc.collectArr
+                        each c in article.collectArr
                             a(href='/collect/cid/#{c}').blog-tag= c
                     div.col-sm-4.text-right
-                        span.article-info 发表时间: #{doc.createTime1}
-                div.row.article!= doc.content
+                        span.article-info 发表时间: #{article.createTime1}
+                div.row.article!= article.content
                 div.row.text-center
-                    span.article-info 翻牌: #{doc.browse}&nbsp;&nbsp;
-                    span.article-info 临幸: #{doc.reply}
+                    span.article-info 翻牌: #{article.browse}&nbsp;&nbsp;
+                    span.article-info 临幸: #{article.reply}
                 div.row
                     div.article-liuyan 留言:
                 div.article-reply-container
@@ -57,7 +57,7 @@ block content
                                             button.btn.btn-default.btn-xs(id = 'reply-#{r.replyID}' 
                                                 replyWhoID = '#{r.replyID}' replyFloor = '#{val.replyID}'
                                                 replyWhoNick = '#{r.nick}' replyWhoWebsite = '#{r.website}'
-                                                articleID = '#{doc.articleID}'
+                                                articleID = '#{article.articleID}'
                                                 ) 回复
                                     div.hide(id = 'container-#{r.replyID}')
                             div
@@ -65,7 +65,7 @@ block content
                                     button.btn.btn-primary.btn-xs(id = 'reply-#{val.replyID}' 
                                         replyWhoID = '#{val.replyID}' replyFloor = '#{val.replyID}'
                                         replyWhoNick = '#{val.nick}' replyWhoWebsite = '#{val.website}'
-                                        articleID = '#{doc.articleID}'
+                                        articleID = '#{article.articleID}'
                                         ) 回复
                             div.hide(id = 'container-#{val.replyID}')
                 form(class = 'form-horizontal article-reply row' action = '/reply' onsubmit='javascript: return check();')
@@ -82,7 +82,7 @@ block content
                         div.col-sm-10
                             input(type = 'text' id = 'website' name = 'website' placeholder = '输入个人网站，可不填').form-control
                     script(id="editor" type="text/plain" style="width:100%;height:250px;")
-                    input.hide(type = 'text' id = 'articleID' name = 'articleID' value = '#{doc.articleID}')/
+                    input.hide(type = 'text' id = 'articleID' name = 'articleID' value = '#{article.articleID}')/
                     div.row
                         div.col-sm-offset-10.col-sm-2
                             input(type = 'submit' class = 'btn btn-primary btn-block' id = 'reply-000' value = '提交')/

@@ -86,7 +86,7 @@ router.get('/article/:id', function(req, res) {
     ], function (err, doc, reply, tag, collect) {
         res.render('blog/article', {
             title: doc.title,
-            doc: doc,
+            article: doc,
             reply: reply,
             tag: tag,
             collect: collect,

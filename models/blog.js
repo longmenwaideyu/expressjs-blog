@@ -11,6 +11,9 @@ var BlogSchema = new Schema({
     browse: { type: Number, default: 0 },
     reply: { type: Number, default: 0 },
     tag: { type: String },
+    state: { type: Number, default: 1 },
+    seoKeywords: { type: String },
+    seoDescription: { type: String },
     createTime: { type: Date, default: Date.now },
     modifyTime: { type: Date, default: Date.now }
 });
