@@ -25,7 +25,8 @@ util.getSEODescription = function (doc) {
     ];
     var ret = doc.title + ',';
     for (var i = 0; i < id.length; i++) {
-        var t = $(id[i]).text().trim();
+        var t = $(id[i]).text().replace(/\s/g, '');
+        console.log(t);
         if (t) {
             ret += t + ',';
         }
@@ -34,7 +35,7 @@ util.getSEODescription = function (doc) {
     return ret;
 }
 util.getSEOKeywords = function (doc) {
-    return doc.tag + ' ' + doc.title;
+    return doc.tag.replace(/\s/g, ',') + ',' + doc.title;
 }
 util.getSEO = function (doc) {
     var seo = {};

@@ -9,6 +9,7 @@ expressjs-blog
 4. 搜索引擎优化，自动提取文章大纲和关键词，填入description和keywords
 5. 占内存少，方便托管于bae的128m最小web服务上。
 6. 漂亮的侧边栏
+
 ###待开发功能
 1. 文章右侧边栏增加一个自动提取的文章大纲，充当文章的目录功能，自动添加锚点进行定位，用户无需手动添加
 2. 增加markdown的编辑器
@@ -16,6 +17,7 @@ expressjs-blog
 4. seo优化目前只是雏形，继续深入开发。
 5. 博主信息侧边栏
 6. 相关文章推荐侧边栏
+
 ###1.安装mongodb
     sudo apt-get install mongo
 ###2.执行以下四条命令
