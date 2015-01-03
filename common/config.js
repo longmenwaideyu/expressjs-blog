@@ -1,9 +1,9 @@
 var config = {
-    blogName: '龙门外的鱼·博客',
+    blogName: '个人博客博客',
     aPageNum: 10,
     dbUser: 'root',
-    dbPass: 'yy19910223',
-    dbAddress: '182.92.215.77',
+    dbPass: '1234',
+    dbAddress: '111.111.111.111',
     dbName: 'blog'
 }
 module.exports = config;
