@@ -17,7 +17,7 @@ function saveTag(data, articleID, res) {
             });
         }    
     }
-    console.log(tag);
+//    console.log(tag);
     Tag.create(tag, function (err) {
         res.redirect('/article/' + articleID);
     });

@@ -26,11 +26,17 @@ function addArticle() {
     var length = data.length;
     var seq = window.collectData.length;
     for (var i = 0; i < length; i++) {
-        window.collectData.push({
-            articleID: data[i],
-            title: $('#article option[value=' + data[i] + ']').text(),
-            seq: i + seq
-        });
+        var j;
+        for (j = window.collectData.length - 1; j >= 0; j--) {
+            if (window.collectData[j].articleID == data[i]) break;
+        }
+        if (j < 0) {
+            window.collectData.push({
+                articleID: data[i],
+                title: $('#article option[value=' + data[i] + ']').text(),
+                seq: i + seq
+            });
+        }
     }
     genList(window.collectData);
 }
@@ -87,7 +93,7 @@ function updateList(sel) {
     $.get('/get/collectdetail', {
             collectID: sel
         }, function (data) {
-            console.log(data);
+            //console.log(data);
             genList(data);
             window.collectData = data;
     });
@@ -99,13 +105,14 @@ function genList(data) {
         +       '<span id="up-#{seq}" class="glyphicon glyphicon-arrow-up collect-arrow mr3"></span>'
         +       '<span id="down-#{seq}" class="glyphicon glyphicon-arrow-down collect-arrow mr3"></span>'
         +       '<span id="remove-#{seq}" class="glyphicon glyphicon-remove collect-red"></span>'
-        +       '<span> #{seq} </span>'
+        +       '<span> #{index}. </span>'
         +       '<span><a href="/article/#{articleID}">#{title}</a></span>'
         +       '<input class="hide" name = "article[#{seq}]" value = "#{articleID}"/>'
         +   '</div>';
     var res = '';
     for (var i = 0; i < len; i++) {
-        data[i].seq = i + 1;
+        data[i].seq = i;
+        data[i].index = i + 1;
         res += tpl.render(s, data[i]);
     }
     $('#collectDetail').append(res);

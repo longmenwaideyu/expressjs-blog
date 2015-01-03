@@ -24,6 +24,11 @@ router.get('/tag/:tag', function(req, res) {
                 callback(null, doc);
             });
         },
+        function (doc, callback) {
+            util.getCollectArr(doc, function (doc) {
+                callback(null, doc);
+            });
+        },
         function (doc, callback){
             Tag.findAllTag(function (tag) {
                 callback(null, [ doc, tag ]);
@@ -36,7 +41,7 @@ router.get('/tag/:tag', function(req, res) {
             });
         }
     ], function (err, rs) {
-        console.log(rs);
+//        console.log(rs);
         res.render('blog/tag', {
             title: config.blogName,
             isMe : req.session.isMe,
