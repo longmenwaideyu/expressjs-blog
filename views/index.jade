@@ -6,7 +6,7 @@ block content
             each val in doc
                 div.blog-container
                     div.blog-title
-                        a(href='/article/#{val.articleID}')= val.title
+                        a(href='/article/#{val.customURL}')= val.title
                     div.blog-wrap.blog-abstract-info
                         span.col-sm-6.blog-info= val.createTime1
                         span.col-sm-2.blog-info= '翻牌: ' + val.browse

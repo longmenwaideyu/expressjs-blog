@@ -15,6 +15,14 @@ html
         script(src='/js/jquery-1.11.1.min.js')
         script(src='/bootcss/js/bootstrap.min.js')
         script(src='/js/myjs.js')
+        script.
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?e978c3ef577f265dd2fe397ed3c7b53d";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
         block cssjs
     body
         nav(role='navigation').navbar.navbar-default.navbar-fixed-top
@@ -44,6 +52,8 @@ html
                             a(href='http://xiao233.com/' target="_blank") 肖太爷
                         span.footer-col
                             a(href='http://www.daimayu.com/' target="_blank") taozifish
+                        span.footer-col
+                            a(href='http://noclyt.com/' target="_blank") 笔良文昌(蚂蚁金服算法爷天哥)
                 div.row.text-center
                     a(href='http://www.miibeian.gov.cn/' target="_blank") 京ICP备14061023号
 

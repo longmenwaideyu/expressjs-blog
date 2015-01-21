@@ -9,9 +9,9 @@ block cssjs
     script(type='text/javascript' src = '/syntaxhighlighter/scripts/shAutoloader.js')
     link(rel='stylesheet' href = '/syntaxhighlighter/styles/shCoreMidnight.css')
 block content
-    if article.noArticle
+    if noArticle
         div.row.text-center
-            h4 #{article.data}
+            h4 #{data}
                 a(href='/') 去看看其他文章吧
     else
         div.row

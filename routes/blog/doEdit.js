@@ -3,11 +3,8 @@ var router = express.Router();
 var Blog = require('../../models/blog');
 var Tag = require('../../models/tag');
 var util = require('../../common/util');
-function updateTag(data, articleID, res) {
-    if (articleID == -1) {
-        res.redirect('/new?err=文章飞了！去博客中找找&' + params);
-        return;
-    }
+var async = require('async');
+function updateTag(data, articleID, callback) {
     data = data.split(' ');
     var tag = [];
     for (var i = data.length - 1; i >= 0; i--) {
@@ -20,15 +17,17 @@ function updateTag(data, articleID, res) {
     }
     Tag.remove({ articleID: articleID }, function (error) {
         Tag.create(tag, function (err) {
-            res.redirect('/article/' + articleID);
+            if (err) {
+                console.log(err);
+            }
+            callback();
         });
     });
-    
 }
 router.get('/doEdit', function(req, res) {
     var val = req.query;
     var params = 'title=' + escape(val.title) + '&tag=' + escape(val.tag)
-            + '&content=' + escape(val.content);
+            + '&content=' + escape(val.content) + '&customURL=' + escape(val.customURL);
     if (!req.session.userInfo) {
         params = '/edit?' + params;
         params = escape(params);
@@ -39,17 +38,47 @@ router.get('/doEdit', function(req, res) {
     val.seoKeywords = util.getSEOKeywords(val)
     val.seoDescription = util.getSEODescription(val);
     val.state = 1;
-    Blog.update({ articleID: val.articleID },
-        { '$set': val },
-        function (error) {
-            if (error) {
-                console.log(error);
-                res.redirect('/new?err=服务器出错,请稍候提交&' + params);
+    val.customURL = val.customURL.replace(/\s/g, '_');
+    val.customURL = val.customURL || val.articleID;
+    //console.log(val);
+    async.series([
+        function (callback) {
+            Blog.checkCustomURL(val.articleID, val.customURL, function (res) {
+                if (!res) {
+                    //console.log('自定义url被占用')
+                    callback('自定义url被占用');
+                } else {
+                    callback(null);
+                }
+            });
+        },
+        function (callback) {
+            console.log('更新博客');
+            Blog.update({ articleID: val.articleID },
+                { '$set': val },
+                function (error) {
+                    if (error) {
+                        console.log('更新博客时错误');
+                        console.log(error);
+                        callback('读写数据库时发生错误');
+                    } else {
+                        cache.tag = null;
+                        callback(null);
+                    }
+            });
+        },
+        function (callback) {
+            updateTag(val.tag, val.articleID, function () {
+                callback(null);
+            });
+        }],
+        function (err, rs) {
+            if (err) {
+                res.redirect('/new?err=' + err + '&' + params);
             } else {
-                cache.tag = null;
-                updateTag(val.tag, val.articleID, res);
+                res.redirect('/article/' + val.customURL);
             }
-    });
+    });    
 });
 
 module.exports = router;

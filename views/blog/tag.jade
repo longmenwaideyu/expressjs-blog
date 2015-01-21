@@ -1,15 +1,12 @@
 extends ../layout
 
 block content
-    if isMe
-        div.row.text-center
-            a.btn.btn-primary(href='/new') 写博客
     div.row
         div.col-sm-8
             each val in doc
                 div.blog-container
                     div.blog-title
-                        a(href='/article/#{val.articleID}')= val.title
+                        a(href='/article/#{val.customURL}')= val.title
                     div.blog-wrap.blog-abstract-info
                         span.col-sm-6.blog-info= val.createTime1
                         span.col-sm-2.blog-info= '翻牌: ' + val.browse
@@ -24,6 +21,6 @@ block content
                                 a(href='/collect/cid/#{c}').blog-tag= c
                     div.blog-abstract!= val.content
                     div.blog-bottom
-                        a.more-link(href='/article/#{val.articleID}') more>>
+                        a.more-link(href='/article/#{val.customURL}') more>>
         div.col-sm-4.hidden-xs
             include ../sidebar.jade

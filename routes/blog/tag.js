@@ -14,6 +14,7 @@ router.get('/tag/:tag', function(req, res) {
                 for (var i = doc.length - 1; i >= 0; i--) {
                     ids.push(doc[i].articleID);
                 };
+                //console.log(ids);
                 callback(null, ids);
             });
         },
@@ -30,11 +31,13 @@ router.get('/tag/:tag', function(req, res) {
             });
         },
         function (doc, callback){
+            //右侧侧边栏数据
             Tag.findAllTag(function (tag) {
                 callback(null, [ doc, tag ]);
             });
         },
         function (rs, callback) {
+            //右侧侧边栏数据
             Collect.findAllCollect(function (collect) {
                 rs.push(collect);
                 callback(null, rs);
@@ -42,6 +45,7 @@ router.get('/tag/:tag', function(req, res) {
         }
     ], function (err, rs) {
 //        console.log(rs);
+        //console.log(rs[0]);
         res.render('blog/tag', {
             title: config.blogName,
             isMe : req.session.isMe,

@@ -7,7 +7,7 @@ var ReplySchema = new Schema({
     nick: { type: String },
     website: { type: String },
     content: { type: String },
-    articleID: { type: String },
+    articleID: { type: Number },
     replyWhoID: { type: Number },
     replyWhoNick: { type: String },
     replyWhoWebsite: { type: String },

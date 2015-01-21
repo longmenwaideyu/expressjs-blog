@@ -7,8 +7,8 @@ router.get('/new', function(req, res) {
     val.title = val.title ? unescape(val.title) : '';
     val.tag = val.tag ? unescape(val.tag) : '';
     val.content = val.content ? unescape(val.content) : '';
+    val.customURL = val.customURL ? unescape(val.customURL) : '';
     //val.content = val.content.replace(/\r\n/g, '');
-    
     val.articleID = '';
     if (req.query && req.query.err) {
         res.render('blog/new', {

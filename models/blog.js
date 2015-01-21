@@ -4,7 +4,8 @@ var mongoose = require('mongoose')
 var autoinc  = require('mongoose-id-autoinc');
 var db = mongoose.connection;
 autoinc.init(db);
-var BlogSchema = new Schema({  
+var BlogSchema = new Schema({
+    customURL: { type: String, default: '' }, 
     userID: { type: String },
     title: { type: String },
     content: { type: String },
@@ -60,6 +61,34 @@ BlogSchema.statics.updateReply = function (articleID, num, callback) {
             callback();
         });
 }
+BlogSchema.statics.checkCustomURL = function (articleID, customURL, callback) {
+    return this.model('Blog').find({ customURL: customURL },
+        function (error, doc) {
+            if (error) {
+                console.log(error);
+                callback(false);
+            } else if (doc.length <= 0) {
+                callback(true);
+            } else if (doc.length == 1 && 
+                doc[0].articleID == articleID) {
+                    callback(true);
+            } else {
+                callback(false);
+            }
+        });
+}
+BlogSchema.statics.updateCustomURL = function (articleID, customURL, callback) {
+    return this.model('Blog').update(
+        { articleID: articleID },
+        { '$set': { customURL: customURL } },
+        function (error) {
+            if(error) {
+                console.log('updateCustomURL');
+                console.log(error);
+            }
+            callback();
+        });
+}
 BlogSchema.statics.updateVisit = function (articleID, num, callback) {
     return this.model('Blog').update(
         { articleID: articleID },
@@ -93,6 +122,21 @@ BlogSchema.statics.findArticleID = function (callback) {
 BlogSchema.statics.findByArticleID = function(id, callback) {
     return this.model('Blog').find({
         articleID: id
+    }, function (error, doc) {
+            if (error) {
+                console.log(error);
+                callback(null);
+            } else {
+                //console.log(doc);
+                if(doc.length == 0)
+                    callback(null);
+                else callback(doc[0]);
+            }
+    });
+}
+BlogSchema.statics.findByCustomURL = function(id, callback) {
+    return this.model('Blog').find({
+        customURL: id
     }, function (error, doc) {
             if (error) {
                 console.log(error);
@@ -140,6 +184,13 @@ BlogSchema.statics.findAll = function (callback) {
             } else {
                 callback(doc);
             }
+        });
+}
+BlogSchema.statics.updateXXX =function (id) {
+    return this.model('Blog').update(
+        { articleID: id },
+        { '$set': { customURL: id } },
+        function (error) {
         });
 }
 BlogSchema.plugin(autoinc.plugin, {

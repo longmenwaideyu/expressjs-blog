@@ -5,8 +5,8 @@ block cssjs
     script(type="text/javascript", charset='utf-8' src="/ueditor/lang/zh-cn/zh-cn.js")
     script(type="text/javascript").
         function check() {
-            $('#submit').attr("disabled","true");
-            var title = $('#s-title').val().trim();
+            $('#submit').attr("disabled", "true");
+            var title = $('#title').val().trim();
             var content = UE.getEditor('editor').getContent().trim();
             if (!title) {
                 alert('请输入标题');
@@ -18,8 +18,6 @@ block cssjs
                 $('#submit').attr("disabled", false);
                 return false;
             }
-            $('#title').val(title);
-            $('#content').val(content);
             return true;
         }
 block content
@@ -27,25 +25,28 @@ block content
         if error
             div.row.text-center.bg-info
                 h4= error
-        div.row
-            div(class='col-sm-2 new-title') 标题
-            div.col-sm-8
-                input(type='text' id='s-title' value = '#{data.title}').form-control
-        div.row
-            <script id="editor" type="text/plain" style="width:100%;height:700px;"></script>
         form(name='blog-submit' id = 'blog-submit' action='#{action}' onsubmit='javascript: return check()')
-            input.hide(type = 'text', name = 'articleID' value = '#{data.articleID}')
-            input.hide(type = 'text' id = 'title' name = 'title')
-            div.row.text-left
+            div.row
+                div(class='col-sm-1 new-title') 标题
+                div.col-sm-5
+                    input(type='text' id='title' name='title' value = '#{data.title}').form-control
+                div(class='col-sm-2 new-title') 自定义URL
+                div.col-sm-4
+                    input(type='text' id='customURL' name='customURL' value = '#{data.customURL}').form-control
+            div.row
+                script(id="editor" type="text/plain" style="width:100%;height:700px;")
                 div(class = 'col-sm-1 blog-tag new-title') 标签
                 div.col-sm-5
                     input(type = 'text' value = '#{data.tag}' id = 'tag' name = 'tag' placeholder = '添加标签，以空格隔开' alt='添加标签，以空格隔开').form-control
-                div.col-sm-1
+                div.col-sm-2
                     input.btn.btn-primary.btn-block(type = 'submit' id = 'submit' value = '提交')
-            textarea.hide(id = 'content' name = 'content')= data.content
+            input(id = 'articleID' name = 'articleID' value = '#{data.articleID}' class='hide')
+        textarea(id = 'data' class = 'hide')= data.content
         script(type='text/javascript').
-            var ue = UE.getEditor('editor');
+            var ue = UE.getEditor('editor', {
+                textarea: 'content'
+            });
             setTimeout(function(){
-                ue.setContent($('#content').text());
+                ue.setContent($('#data').text());
             }, 2000);
             

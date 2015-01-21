@@ -8,7 +8,8 @@ var util = require('../../common/util');
 var async = require('async');
 function fail(req, res, data) {
     res.render('blog/article', {
-        doc: { noArticle: true, data: data }
+        noArticle: true,
+        data: data
     });
 }
 function recordVisit(articleID, callback) {
@@ -35,15 +36,12 @@ function genReply(doc) {
 }
 router.get('/article/:id', function(req, res) {
     var id = req.params.id;
-    if (id < 0) {
-        fail(req, res, '文章ID不正确');
-        return;
-    }
     async.waterfall([
         function (callback) {
-            Blog.findByArticleID(id, function(doc) {
+            Blog.findByCustomURL(id, function(doc) {
                 if (!doc) {
-                    fail(req, res, '文章飞走了!')
+                    console.log('文章不存在');
+                    callback('文章不存在');
                     return;
                 }
                 doc.tag = doc.tag || '';
@@ -63,16 +61,17 @@ router.get('/article/:id', function(req, res) {
             });
         },
         function (doc, callback) {
-            Reply.findByArticleID(id, function (reply) {
+            Reply.findByArticleID(doc.articleID, function (reply) {
                 reply = genReply(reply);
                 callback(null, doc, reply);
             });
         },
         function (doc, reply, callback) {
-            recordVisit(id, function () {
+            recordVisit(doc.articleID, function () {
                 callback(null, doc, reply);
             });
         },
+        //右侧边栏数据
         function (doc, reply, callback){
             Tag.findAllTag(function (tag) {
                 callback(null, doc, reply, tag);
@@ -84,6 +83,10 @@ router.get('/article/:id', function(req, res) {
             });
         }
     ], function (err, doc, reply, tag, collect) {
+        if (err) {
+            fail(req, res, err);
+            return;
+        }
         res.render('blog/article', {
             title: doc.title,
             article: doc,

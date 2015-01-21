@@ -76,21 +76,7 @@ CollectSchema.statics.findAll = function (callback) {
                 console.log(error);
                 callback([]);
             } else {
-                var ret = [];
-                var retMap = {};
-                for (var i = doc.length - 1; i >= 0; i--) {
-                    var id = retMap[doc[i].collect];
-                    if (id == null || id == undefined) {
-                        retMap[doc[i].collect] = ret.length;
-                        id = ret.length;
-                        ret.push({
-                            collect: doc[i].collect,
-                            article: []
-                        });
-                    }
-                    ret[id].article.push(doc[i]);
-                };
-                callback(ret);
+                callback(doc);
             }
         });
 }

@@ -30,10 +30,13 @@ function addArticle() {
         for (j = window.collectData.length - 1; j >= 0; j--) {
             if (window.collectData[j].articleID == data[i]) break;
         }
+        //新添文章不在原有列表中
+        data[i] = data[i].split('-');
         if (j < 0) {
             window.collectData.push({
-                articleID: data[i],
-                title: $('#article option[value=' + data[i] + ']').text(),
+                articleID: data[i][0],
+                customURL: data[i][1],
+                title: $('#article option[value="' + data[i][0] + '-' + data[i][1] + '"]').text(),
                 seq: i + seq
             });
         }
@@ -106,7 +109,7 @@ function genList(data) {
         +       '<span id="down-#{seq}" class="glyphicon glyphicon-arrow-down collect-arrow mr3"></span>'
         +       '<span id="remove-#{seq}" class="glyphicon glyphicon-remove collect-red"></span>'
         +       '<span> #{index}. </span>'
-        +       '<span><a href="/article/#{articleID}">#{title}</a></span>'
+        +       '<span><a href="/article/#{customURL}">#{title}</a></span>'
         +       '<input class="hide" name = "article[#{seq}]" value = "#{articleID}"/>'
         +   '</div>';
     var res = '';

@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
     , ObjectId = Schema.ObjectId;
 var TagSchema = new Schema({  
     tag: { type: String },
-    articleID: { type: String },
+    articleID: { type: Number },
     createTime: { type: Date, default: Date.now }
 });
 TagSchema.statics.findAllTag = function (callback) {

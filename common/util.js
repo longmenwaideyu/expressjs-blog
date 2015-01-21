@@ -1,6 +1,7 @@
 var util = {};
 var cheerio = require('cheerio');
 var Collect = require('../models/collect');
+
 util.isEmail = function (email) {
     var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     return reg.test(email);
@@ -14,6 +15,7 @@ util.getDate =  function (date) {
         + d.getSeconds();
     return ret;
 }
+
 util.getSEODescription = function (doc) {
     var $ = cheerio.load(doc.content);
     var id = [
@@ -26,10 +28,17 @@ util.getSEODescription = function (doc) {
     var ret = doc.title + ',';
     for (var i = 0; i < id.length; i++) {
         var t = $(id[i]).text().replace(/\s/g, '');
-        console.log(t);
-        if (t) {
-            ret += t + ',';
+        if (!t) continue;
+        t = t.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\（|\）|\《|\》|\、|\；|\：|\‘|\’|\“|\”|\，|\。|\？|\！|\·|\￥|\…|\—|\、]/g,',');
+        t = t.replace(/[0-9]/g, ',');
+        t = t.split(',');
+        var length = t.length;
+        for (var j = 0; j < length; j++) {
+            if (t[j]) {
+                ret += t[j];
+            }
         }
+        ret += ',';
         if (ret.length > 155) break;
     }
     return ret;

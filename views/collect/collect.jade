@@ -11,6 +11,6 @@ block content
                         each v,index in val.article
                             div.collect-article-title
                                 =(index + 1) +'. ' 
-                                a(href='/article/#{v.articleID}')= v.title
+                                a(href='/article/#{v.customURL}')= v.title
         div.col-sm-4.hidden-xs
             include ../sidebar.jade

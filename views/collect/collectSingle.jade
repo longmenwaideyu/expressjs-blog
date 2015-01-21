@@ -8,6 +8,6 @@ block content
                 div.collectsingle-wrap
                     div.collectsingle-article-title
                         =(index + 1) +'. '
-                        a(href='/article/#{v.articleID}')= v.title
+                        a(href='/article/#{v.customURL}')= v.title
                     div.collectsingle-abstract
                         div!= v.content

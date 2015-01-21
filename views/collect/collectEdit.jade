@@ -23,6 +23,6 @@ block content
         div(id="addContainer" style="display:none")
             select.collect-article.form-control(id = 'article' multiple size="20")
                 each val in article
-                    option(value = "#{val.articleID}")= val.title
+                    option(value = "#{val.articleID}-#{val.customURL}")= val.title
             div.col-sm-2.col-sm-offset-10
                 button.btn.btn-primary.btn-block(id="addbtn") 确定
