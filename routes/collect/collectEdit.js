@@ -9,11 +9,23 @@ router.get('/collect/edit', function(req, res) {
         return;
     }*/
     Collect.findAll(function (doc) {
+         var ret = [];
+        var retMap = {};
+        for (var i = doc.length - 1; i >= 0; i--) {
+            var id = retMap[doc[i].collect];
+            if (id == null || id == undefined) {
+                retMap[doc[i].collect] = ret.length;
+                id = ret.length;
+                ret.push({
+                    collect: doc[i].collect
+                });
+            }
+        };
         Blog.findAll(function (article) {
             res.render('collect/collectEdit', {
                 title: config.blogName,
                 isMe : req.session.isMe,
-                collect: doc,
+                collect: ret,
                 article: article
             });
         });
