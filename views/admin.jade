@@ -25,6 +25,6 @@ block content
                     li.admin-li
                         p
                             span
-                                a(href='/article/#{val.articleID}')= val.title
+                                a(href='/article/#{val.customURL}')= val.title
                             span.admin-edit
                                 a(href='/edit?articleID=#{val.articleID}') 编辑
