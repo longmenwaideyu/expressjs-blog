@@ -9,6 +9,7 @@ expressjs-blog
 4. 搜索引擎优化，自动提取文章大纲和关键词，填入description和keywords
 5. 占内存少，方便托管于bae的128m最小web服务上。
 6. 漂亮的侧边栏
+7. 自定义URL，博客链接可以体现主题
 
 ###待开发功能
 1. 文章右侧边栏增加一个自动提取的文章大纲，充当文章的目录功能，自动添加锚点进行定位，用户无需手动添加
@@ -39,4 +40,4 @@ expressjs-blog
 注册成功之后注释掉useRoutes.js的63-66行。
 ###6.到 /admin 下管理博客
 ##作者个人博客
-[www.thinkspring.cn](http://www.thinkspring.cn)
+[longmenwaideyu.cn](http://longmenwaideyu.cn)
