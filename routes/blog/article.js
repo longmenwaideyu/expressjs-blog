@@ -87,6 +87,7 @@ router.get('/article/:id', function(req, res) {
             fail(req, res, err);
             return;
         }
+
         res.render('blog/article', {
             title: doc.title,
             article: doc,

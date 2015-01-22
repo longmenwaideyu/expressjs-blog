@@ -14,6 +14,13 @@ function process(req, res, totPage, tag, collect) {
         doc = util.getAbstract(doc);
         doc = util.getTagArr(doc);
         util.getCollectArr(doc, function (doc) {
+
+            var ownerInfo = {
+                ownerName: config.ownerName,
+                ownerLocation: config.ownerLocation,
+                motto: config.motto,
+                articleNum: util.getArticleNum()
+            }
             res.render('index', {
                 title: config.blogName,
                 isMe : req.session.isMe,
@@ -27,6 +34,10 @@ function process(req, res, totPage, tag, collect) {
     });
 }
 router.get('/', function(req, res) {
+    var page = 1;
+    if (req.query) {
+        page = req.query.page || 1;
+    }
     async.series([
         function (callback){
             Blog.findTotPage(function (totPage) {
@@ -42,10 +53,42 @@ router.get('/', function(req, res) {
             Collect.findAllCollect(function (collect) {
                 callback(null, collect);
             });
+        },
+        function (callback) {
+            //加工一下本页的文章
+            Blog.findByPage(page, function (doc) {
+                doc = util.getAbstract(doc);
+                doc = util.getTagArr(doc);
+                util.getCollectArr(doc, function (doc) {
+                    callback(null, doc);
+                });
+            });
+        },
+        function (callback) {
+            //博主信息
+            util.getArticleNum(function (articleNum) {
+                var ownerInfo = {
+                    ownerName: config.ownerName,
+                    ownerLocation: config.ownerLocation,
+                    ownerOccupation: config.ownerOccupation,
+                    ownerSkill: config.ownerSkill,
+                    motto: config.motto,
+                    articleNum: articleNum
+                };
+                callback(null, ownerInfo);
+            });
         }
     ], function (err, rs) {
-        //console.log(rs);
-        process(req, res, rs[0], rs[1], rs[2]);
+        res.render('index', {
+            title: config.blogName,
+            isMe : req.session.isMe,
+            doc: rs[3],
+            tag: rs[1],
+            collect: rs[2],
+            totPage: rs[0],
+            ownerInfo: rs[4],
+            curPage: page
+        });
     });
 });
 

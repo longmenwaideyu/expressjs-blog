@@ -1,7 +1,7 @@
 var util = {};
 var cheerio = require('cheerio');
 var Collect = require('../models/collect');
-
+var Blog = require('../models/blog');
 util.isEmail = function (email) {
     var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     return reg.test(email);
@@ -15,7 +15,17 @@ util.getDate =  function (date) {
         + d.getSeconds();
     return ret;
 }
-
+util.getArticleNum = function (callback) {
+    if (cache.articleNum) {
+        callback(cache.articleNum);
+    } else {
+        Blog.findAll(function (doc) {
+            doc = doc || [];
+            cache.articleNum = doc.length;
+            callback(doc.length);
+        });
+    }
+}
 util.getSEODescription = function (doc) {
     var $ = cheerio.load(doc.content);
     var id = [

@@ -1,0 +1,24 @@
+div.blog-box
+    div.blog-box-title
+        div.blog-box-titlein 博主信息
+    table(width="100%").blog-owner-table
+        tr
+            td(width="50%")
+                strong 姓名:  
+                =ownerInfo.ownerName
+            td(width="50%")
+                strong 地点:  
+                =ownerInfo.ownerLocation
+        tr
+            td(width="50%")
+                strong 职业:  
+                =ownerInfo.ownerOccupation 
+            td(width="50%")
+                strong 文章数:  
+                =ownerInfo.articleNum
+        tr
+            td(colspan="2")
+                strong 专长:  
+                =ownerInfo.ownerSkill
+    h4 座右铭:
+    p= ownerInfo.motto

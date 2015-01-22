@@ -27,6 +27,9 @@ margin-right: 10px;
 .mr3 {
   margin-right: 3px;
 }
+.fr {
+  float: right;
+}
 .hide {
     display: none;
 }
@@ -151,6 +154,12 @@ margin-right: 10px;
 .blog-tag-color0 a:visited {
   color: #FFF;
   text-decoration:none;
+}
+.blog-owner-table {
+  margin: 3px 0;
+}
+.blog-owner-table td {
+  padding: 1px 0;
 }
 .blog-title {
   width: 100%;

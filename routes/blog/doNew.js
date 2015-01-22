@@ -65,6 +65,7 @@ router.get('/doNew', function(req, res) {
                 cache.totPage = null;
                 cache.tag = null;
                 cache.collect = null;
+                cache.articleNum = null;
                 callback(null, id);
             });
         },
