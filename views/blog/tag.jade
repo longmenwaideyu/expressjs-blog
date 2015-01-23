@@ -8,9 +8,9 @@ block content
                     div.blog-title
                         a(href='/article/#{val.customURL}')= val.title
                     div.blog-wrap.blog-abstract-info
-                        span.col-sm-6.blog-info= val.createTime1
-                        span.col-sm-2.blog-info= '翻牌: ' + val.browse
-                        span.col-sm-2.blog-info= '临幸: ' + val.reply
+                        span.col-sm-6= val.createTime1
+                        span.col-sm-2= '翻牌: ' + val.browse
+                        span.col-sm-2= '临幸: ' + val.reply
                         div.col-sm-6
                             span.blog-tag.glyphicon.glyphicon-tags
                             each tag in val.tagArr

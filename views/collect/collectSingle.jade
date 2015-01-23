@@ -2,12 +2,27 @@ extends ../layout
 
 block content
     div.row
-        div.collectsingle-container
-            div.collectsingle-title= collect
-            each v, index in article
-                div.collectsingle-wrap
-                    div.collectsingle-article-title
-                        =(index + 1) +'. '
-                        a(href='/article/#{v.customURL}')= v.title
-                    div.collectsingle-abstract
-                        div!= v.content
+        div.col-sm-8
+            center
+                h3= collect
+            each val in doc
+                div.blog-container
+                    div.blog-title
+                        a(href='/article/#{val.customURL}')= val.title
+                    div.blog-wrap.blog-abstract-info
+                        span.col-sm-6= val.createTime1
+                        span.col-sm-2= '翻牌: ' + val.browse
+                        span.col-sm-2= '临幸: ' + val.reply
+                        div.col-sm-6
+                            span.blog-tag.glyphicon.glyphicon-tags
+                            each tag in val.tagArr
+                                a(href='/tag/#{tag}').blog-tag= tag
+                        div.col-sm-6
+                            span.blog-tag.glyphicon.glyphicon-folder-open
+                            each c in val.collectArr
+                                a(href='/collect/cid/#{c}').blog-tag= c
+                    div.blog-abstract!= val.content
+                    div.blog-bottom
+                        a.more-link(href='/article/#{val.customURL}') more>>
+        div.col-sm-4.hidden-xs
+            include ../sidebar.jade

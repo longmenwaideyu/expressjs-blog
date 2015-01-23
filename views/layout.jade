@@ -25,13 +25,18 @@ html
             })();
         block cssjs
     body
-        nav(role='navigation').navbar.navbar-default.navbar-fixed-top
-            div.container
-                div.navbar-header
-                    a(class='navbar-brand', href='/') 首页
-                    a(class='navbar-brand', href='/collect') 文集
+        div.blog-header
+            div.blog-header-title
+                h2= config.blogName
+                p= config.motto
+            ul(class="blog-header-nav container")
+                li(role="presentation")
+                    a(href="/") 首页
+                li(role="presentation")
+                    a(href="/collect") 文集
+                li(role="presentation")
                     if isMe
-                        a(class='navbar-brand', href='/admin' title="管理页")
+                        a(href='/admin' title="管理页")
                             span.glyphicon.glyphicon-user
         div.container
             block content
@@ -40,21 +45,14 @@ html
                 div.row
                     div.col-sm-6
                         h3 关于我
-                        a(href='http://hi.baidu.com/longmenwaideyu' target="_blank") 百度博客
-                        p longmenwaideyu[at]126[dot]com
+                        a(href='#{config.otherBlog.url}' target="_blank")= config.otherBlog.name
+                        p= config.email.replace('@', '[at]').replace('.', '[dot]')
                     div.col-sm-6
                         h3 友情连接
-                        span.footer-col
-                            a(href='http://hi.baidu.com/longmenwaideyu' target="_blank") 百度博客
-                        span.footer-col
-                            a(href='http://www.wuchengbin.cn' target="_blank") binwin20
-                        span.footer-col
-                            a(href='http://xiao233.com/' target="_blank") 肖太爷
-                        span.footer-col
-                            a(href='http://www.daimayu.com/' target="_blank") taozifish
-                        span.footer-col
-                            a(href='http://noclyt.com/' target="_blank") 笔良文昌(蚂蚁金服算法爷天哥)
+                        each val in config.friendlyLinks
+                            span.footer-col
+                                a(href='#{val.url}' target="_blank")= val.name
                 div.row.text-center
-                    a(href='http://www.miibeian.gov.cn/' target="_blank") 京ICP备14061023号
+                    a(href='http://www.miibeian.gov.cn/' target="_blank")= config.ICPNumber
 
 

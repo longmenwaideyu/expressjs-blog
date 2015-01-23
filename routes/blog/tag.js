@@ -50,8 +50,8 @@ router.get('/tag/:tag', function(req, res) {
             title: config.blogName,
             isMe : req.session.isMe,
             doc: rs[0],
-            tag: rs[1],
-            collect: rs[2]
+            tags: rs[1],
+            collects: rs[2]
         });
     });    
 });

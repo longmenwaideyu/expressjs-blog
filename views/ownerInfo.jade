@@ -5,20 +5,20 @@ div.blog-box
         tr
             td(width="50%")
                 strong 姓名:  
-                =ownerInfo.ownerName
+                =config.ownerName
             td(width="50%")
                 strong 地点:  
-                =ownerInfo.ownerLocation
+                =config.ownerLocation
         tr
             td(width="50%")
                 strong 职业:  
-                =ownerInfo.ownerOccupation 
+                =config.ownerOccupation 
             td(width="50%")
                 strong 文章数:  
-                =ownerInfo.articleNum
+                =articleNum
         tr
             td(colspan="2")
                 strong 专长:  
-                =ownerInfo.ownerSkill
+                =config.ownerSkill
     h4 座右铭:
-    p= ownerInfo.motto
+    p= config.motto

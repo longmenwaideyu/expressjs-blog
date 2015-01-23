@@ -92,8 +92,8 @@ router.get('/article/:id', function(req, res) {
             title: doc.title,
             article: doc,
             reply: reply,
-            tag: tag,
-            collect: collect,
+            tags: tag,
+            collects: collect,
             isMe: req.session.isMe,
             replyID: req.query.replyID
         });

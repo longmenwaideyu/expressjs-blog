@@ -1,12 +1,12 @@
 div.blog-box
     div.blog-box-title
         div.blog-box-titlein 标签
-    each v, index in tag
+    each v, index in tags
         div(class="blog-tag-color#{v % 4}")
             a(href="/tag/#{index}")= index + '(' + v + ')'
 div.blog-box
     div.blog-box-title
         div.blog-box-titlein 文集
-    each v, index in collect
+    each v, index in collects
         div(class="blog-tag-color#{v % 4}")
             a(href="/collect/cid/#{index}")= index + '(' + v + ')'

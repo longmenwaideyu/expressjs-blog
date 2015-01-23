@@ -58,8 +58,8 @@ router.get('/collect', function(req, res) {
             title: config.blogName,
             isMe : req.session.isMe,
             doc: doc,
-            tag: tag,
-            collect: collect
+            tags: tag,
+            collects: collect
         });
     });
 });

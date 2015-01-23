@@ -18,8 +18,7 @@
   color: #666;
 }
 body {
-  padding-top: 60px;
-  background-color: #fff;
+  background-color: #f8f8f8;
 }
 .mr10 {
 margin-right: 10px;
@@ -36,6 +35,37 @@ margin-right: 10px;
 .footer-col {
   margin-right: 20px;
   float: left;
+}
+.blog-header {
+}
+.blog-header-title {
+  width: 100%;
+  text-align: center;
+  color: #00baf0;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.blog-header-nav {
+  font-size: 20px;
+  background-color: #444;
+  border-bottom: 1px solid #222;
+  border-top: 1px solid #222;
+  list-style:none;
+  line-height: 2.2;
+  padding: 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.blog-header-nav li {
+  float: left;
+  padding: 0 20px;
+  border-right: 1px solid #222;
+}
+.blog-header-nav a {
+  text-decoration:none;
+  color: #fff;
+}
+.blog-header-nav li:hover {
+  background-color: #222;
+  //cursor: pointer;
 }
 .more-link {
   height: 18px;
@@ -85,15 +115,15 @@ margin-right: 10px;
   font-size: 18px;
   line-height: 26px;
   padding: 3px;
-  background-color: #00BCF2;
+  background-color: #00baf0;
   text-align: center;
   width: 38%;
   color: #FFF;
 }
 .blog-box-title {
   width: 100%;
-  border-bottom: 3px solid #00BCF2;
-  background-color: #FFF;
+  border-bottom: 3px solid #00baf0;
+  //background-color: #FFF;
 }
 .blog-tag-color1 {
   float: left;
@@ -168,12 +198,12 @@ margin-right: 10px;
   padding-left: 5px;
   font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
+.blog-title a {
+  color: #FF6100;
+}
 .article-tag {
   width: 45px;
   float: left;
-}
-.blog-info {
-  color: #666;
 }
 .blog-abstract {
   float: left;
@@ -184,10 +214,14 @@ margin-right: 10px;
   font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
 .blog-abstract-info {
-  background-color: #fafafa;
+  background-color: #00baf0;
   width: 100%;
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #eee;
+  border-bottom: 1px solid #00A6E8;
+  border-top: 1px solid #00A6E8;
+  color: #fff;
+}
+.blog-abstract-info a {
+  color: #FFF;
 }
 .blog-bottom {
   float: left;
@@ -239,7 +273,7 @@ margin-right: 10px;
   font-size: 18px;
 }
 .article-liuyan {
-  background-color: #FFF;
+  //background-color: #FFF;
   border-bottom: 2px solid #3399FF;
   font-size: 24px;
   line-height: 38px;
@@ -256,12 +290,12 @@ margin-right: 10px;
 }
 .article {
   border-top: 2px solid #3399FF;
-  border-bottom: 1px solid #3399FF;
+  //border-bottom: 1px solid #3399FF;
   border-radius: 2px;
   word-wrap: break-word;
   word-break: normal; 
   font-size: 18px;
-  //background-color: #eee;
+  background-color: #fff;
 }
 .article img,
 .blog-abstract img,
@@ -271,8 +305,8 @@ margin-right: 10px;
 .blog-abstract img,
 .collectsingle-abstract img {
   float: left;
-  width:150px;
-  height:150px;
+  width:165px;
+  height:165px;
   margin: 3px;
 }
 .underline {

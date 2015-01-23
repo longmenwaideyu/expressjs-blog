@@ -1,4 +1,4 @@
-expressjs-blog
+﻿expressjs-blog
 ==============
 
 ##用expressjs开发的个人博客系统
@@ -8,7 +8,7 @@ expressjs-blog
 3. 响应式布局，手机上效果也很出色
 4. 搜索引擎优化，自动提取文章大纲和关键词，填入description和keywords
 5. 占内存少，方便托管于bae的128m最小web服务上。
-6. 漂亮的侧边栏
+6. 漂亮的侧边栏，博主信息，标签，文集
 7. 自定义URL，博客链接可以体现主题
 
 ###待开发功能
@@ -16,8 +16,7 @@ expressjs-blog
 2. 增加markdown的编辑器
 3. 回复审核和删除功能
 4. seo优化目前只是雏形，继续深入开发。
-5. 博主信息侧边栏
-6. 相关文章推荐侧边栏
+5. 相关文章推荐侧边栏
 
 ###1.安装mongodb
     sudo apt-get install mongo

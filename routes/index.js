@@ -67,15 +67,7 @@ router.get('/', function(req, res) {
         function (callback) {
             //博主信息
             util.getArticleNum(function (articleNum) {
-                var ownerInfo = {
-                    ownerName: config.ownerName,
-                    ownerLocation: config.ownerLocation,
-                    ownerOccupation: config.ownerOccupation,
-                    ownerSkill: config.ownerSkill,
-                    motto: config.motto,
-                    articleNum: articleNum
-                };
-                callback(null, ownerInfo);
+                callback(null, articleNum);
             });
         }
     ], function (err, rs) {
@@ -83,10 +75,10 @@ router.get('/', function(req, res) {
             title: config.blogName,
             isMe : req.session.isMe,
             doc: rs[3],
-            tag: rs[1],
-            collect: rs[2],
+            tags: rs[1],
+            collects: rs[2],
             totPage: rs[0],
-            ownerInfo: rs[4],
+            articleNum: rs[4],
             curPage: page
         });
     });
