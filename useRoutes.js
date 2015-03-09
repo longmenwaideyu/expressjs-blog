@@ -20,9 +20,9 @@ function use (app) {
 
     app.use('/ueditor/ue', ueditor({
         configFile: '/ueditor/nodejs/config.json',
-        mode: 'local',
-        AccessKey: 'AdGlhYkMA1khQ1jq3uZMZF14',
-        SecrectKey: 'oiUqt1VpH3fddPSWmRWjDwTIWudSMxof',
+        mode: config.serverPlatform.platform,
+        AccessKey: config.serverPlatform.AccessKey,
+        SecrectKey: config.serverPlatform.SecrectKey,
         staticPath: path.join(__dirname, 'public'),
         dynamicPath: '/uploadimage'
     }));

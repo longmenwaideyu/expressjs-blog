@@ -5,6 +5,11 @@
     dbPass: '1234',
     dbAddress: '111.111.111.111',
     dbName: 'blog',
+    serverPlatform: {
+        platform: 'local',
+        AccessKey: 'xxx',//platform是local可以不填
+        SecrectKey: 'xxx'//platform是local可以不填
+    },
     ownerName: '龙门外的鱼',
     ownerLocation: '',//所在地
     ownerOccupation: '-',//职业
