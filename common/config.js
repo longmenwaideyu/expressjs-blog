@@ -1,27 +1,23 @@
 ﻿var config = {
-    blogName: '龙门外的鱼·博客',
-    aPageNum: 10,
+    blogName: '个人博客',
+    aPageNum: 10,//分页,一页显示多少文章.
     dbUser: 'root',
-    dbPass: 'Yy19910223',
-    dbAddress: '182.92.215.77',
+    dbPass: '1234',
+    dbAddress: '111.111.111.111',
     dbName: 'blog',
     ownerName: '龙门外的鱼',
-    ownerLocation: '北京',
-    ownerOccupation: '学生',
-    ownerSkill: 'c++，算法，高性能计算',
-    motto: '《孙子兵法》云：“求其上，得其中；求其中，得其下；求其下，必败。”  自己再菜，也不敢不求其上。',
+    ownerLocation: '',//所在地
+    ownerOccupation: '-',//职业
+    ownerSkill: '',//主要从事领域与技能
+    motto: 'Thoughts, stories and ideas.',//座右铭
     email: 'longmenwaideyu@126.com',
-    otherBlog: {
+    otherBlog: {//你的其他博客
         url: 'http://hi.baidu.com/longmenwaideyu',
         name: '百度博客'
     },
-    friendlyLinks: [
-        { url: 'http://hi.baidu.com/longmenwaideyu', name : '百度博客' },
-        { url: 'http://www.wuchengbin.cn', name: 'binwin20' },
-        { url: 'http://xiao233.com', name: '肖太爷' },
-        { url: 'http://www.daimayu.com', name: 'taozifish' },
-        { url: 'http://noclyt.com', name: '笔良文昌'}
+    friendlyLinks: [//友情链接
+        { url: 'http://hi.baidu.com/longmenwaideyu', name : '百度博客' }
     ],
-    ICPNumber: '京ICP备14061023号'
+    ICPNumber: '京ICP备00000000号'
 }
 module.exports = config;
