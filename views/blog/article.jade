@@ -35,7 +35,7 @@ block content
                     span.article-info 临幸: #{article.reply}
                 div.row
                     div.article-liuyan 留言:
-                div.article-reply-container
+                div.row
                     each val in reply
                         div.article-floor
                             div.article-reply-info
@@ -52,21 +52,21 @@ block content
                                             |  回复:  #{r.replyWhoNick}
                                         div.col-sm-4.text-right.article-reply-time= r.replyTime1
                                     div.article-reply-content!= r.content
-                                    div
-                                        div.col-sm-1
-                                            button.btn.btn-default.btn-xs(id = 'reply-#{r.replyID}' 
-                                                replyWhoID = '#{r.replyID}' replyFloor = '#{val.replyID}'
-                                                replyWhoNick = '#{r.nick}' replyWhoWebsite = '#{r.website}'
-                                                articleID = '#{article.articleID}'
-                                                ) 回复
+                                    div.article-reply-btn
+                                        button.btn.btn-default.btn-xs(id = 'reply-#{r.replyID}' 
+                                            replyWhoID = '#{r.replyID}' replyFloor = '#{val.replyID}'
+                                            replyWhoNick = '#{r.nick}' replyWhoWebsite = '#{r.website}'
+                                            articleID = '#{article.articleID}' 
+											customURL = '#{article.customURL}'
+                                            ) 回复
                                     div.hide(id = 'container-#{r.replyID}')
-                            div
-                                div.col-sm-1
-                                    button.btn.btn-primary.btn-xs(id = 'reply-#{val.replyID}' 
-                                        replyWhoID = '#{val.replyID}' replyFloor = '#{val.replyID}'
+                            div.article-reply-btn
+                                button.btn.btn-primary.btn-xs(id = 'reply-#{val.replyID}' 
+                                replyWhoID = '#{val.replyID}' replyFloor = '#{val.replyID}'
                                         replyWhoNick = '#{val.nick}' replyWhoWebsite = '#{val.website}'
-                                        articleID = '#{article.articleID}'
-                                        ) 回复
+                                    articleID = '#{article.articleID}' 
+									customURL = '#{article.customURL}'
+                                    ) 回复
                             div.hide(id = 'container-#{val.replyID}')
                 form(class = 'form-horizontal article-reply row' action = '/reply' onsubmit='javascript: return check();')
                     div.form-group
@@ -83,6 +83,7 @@ block content
                             input(type = 'text' id = 'website' name = 'website' placeholder = '输入个人网站，可不填').form-control
                     script(id="editor" type="text/plain" style="width:100%;height:250px;")
                     input.hide(type = 'text' id = 'articleID' name = 'articleID' value = '#{article.articleID}')/
+                    input.hide(type = 'text' id = 'customURL' name = 'customURL' value = '#{article.customURL}')/
                     div.row
                         div.col-sm-offset-10.col-sm-2
                             input(type = 'submit' class = 'btn btn-primary btn-block' id = 'reply-000' value = '提交')/

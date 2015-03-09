@@ -79,7 +79,7 @@ router.get('/', function(req, res) {
             collects: rs[2],
             totPage: rs[0],
             articleNum: rs[4],
-            curPage: page
+            curPage: parseInt(page)
         });
     });
 });

@@ -13,10 +13,10 @@ block content
             ul.admin-ul
                 each val in reply
                     li.admin-li
-                        p #{val.nick} 在 《#{val.article}》 对 #{val.replyWhoNick} 说:
+                        p #{val.nick} 在 《#{val.title}》 对 #{val.replyWhoNick} 说:
                         span!= val.content
                         p
-                            a(href='/article/#{val.articleID}?replyID=#{val.replyID}') 查看
+                            a(href='/article/#{val.customURL}?replyID=#{val.replyID}') 查看
         div.admin-title
             h3 文章列表
         div.admin-box

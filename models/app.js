@@ -9,9 +9,8 @@ var app = express();
 var session = require('express-session')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-//设置引擎，将.jade的文件用./common/jade处理
-app.engine('.jade', require('./common/jade'));
 app.set('view engine', 'jade');
+ 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
@@ -25,7 +24,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-//配置和缓存
 global.config = require('./common/config');
 global.cache = {};
 require('./useRoutes')(app);
@@ -64,4 +62,4 @@ if (!config.dbUser) {
 } else {
     mongoose.connect('mongodb://' + config.dbUser + ':' + config.dbPass + '@' + config.dbAddress + '/' +config.dbName);
 }
-module.exports = app;  
+module.exports = app;

@@ -38,7 +38,7 @@ router.get('/reply', function(req, res) {
             res.redirect('/article/' + val.articleID + '?err=服务器出错');
         } else {
             Blog.updateReply(val.articleID, 1, function () {
-                res.redirect('/article/' + val.articleID);
+                res.redirect('/article/' + val.customURL);
             });
         }
     });

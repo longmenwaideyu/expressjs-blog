@@ -70,6 +70,7 @@ function genReply(me) {
     var replyWhoWebsite = $(me).attr('replyWhoWebsite');
     var replyFloor = $(me).attr('replyFloor');
     var articleID = $(me).attr('articleID');
+	var customURL = $(me).attr('customURL');
     var str = '<form action="/reply" onsubmit="javascript: return check(\'' + replyWhoID + '\')" class="form-horizontal article-reply row">'
         +       '<div class="form-group"><label for="nick" class="col-sm-2 control-label">昵称:</label><div class="col-sm-10"><input type="text" id="nick' + replyWhoID + '" name="nick" placeholder="输入显示的昵称" class="form-control"></div></div>'
         +       '<div class="form-group"><label for="email" class="col-sm-2 control-label">邮箱:</label><div class="col-sm-10"><input type="text" id="email' + replyWhoID + '" name="email" placeholder="输入邮箱，不公开" class="form-control"></div></div>'
@@ -80,6 +81,7 @@ function genReply(me) {
         +       '<input name = "replyWhoWebsite" value = "' + replyWhoWebsite + '" class="hide"/>'
         +       '<input name = "replyFloor" value = "' + replyFloor + '" class="hide"/>'
         +       '<input name = "articleID" value = "' + articleID + '" class="hide"/>'
+        +       '<input name = "customURL" value = "' + customURL + '" class="hide"/>'
         +       '<div class="row"><div class="col-sm-offset-10 col-sm-2"><input id= "replybtn-' + replyWhoID + '" type="submit" value="提交" class="btn btn-primary btn-block"></div></div>'
         +      '</form>';
     var container = $('#container-' + replyWhoID);

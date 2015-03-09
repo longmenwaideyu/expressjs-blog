@@ -56,12 +56,12 @@ margin-right: 10px;
 }
 .blog-header-nav li {
   float: left;
-  padding: 0 20px;
   border-right: 1px solid #222;
 }
 .blog-header-nav a {
   text-decoration:none;
   color: #fff;
+  padding: 12px 20px;
 }
 .blog-header-nav li:hover {
   background-color: #222;
@@ -105,7 +105,7 @@ margin-right: 10px;
 }
 .blog-box {
   float: left;
-  width: 100%;
+  //width: 100%;
   margin-bottom: 30px;
   margin-right: -15px;
   //background-color: #eee;
@@ -238,7 +238,7 @@ margin-right: 10px;
 .article-reply-floor {
   border-left: 3px solid #00BCF2;
   border-top: 1px solid #eee;
-  margin-left: 25px;
+  margin-left: 4%;
   margin-bottom: 3px;
   background-color: #FFF;
   float: left;
@@ -274,16 +274,11 @@ margin-right: 10px;
 }
 .article-liuyan {
   //background-color: #FFF;
-  border-bottom: 2px solid #3399FF;
+  //border-bottom: 2px solid #3399FF;
   font-size: 24px;
   line-height: 38px;
   padding-left: 5px;
   font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
-}
-.article-reply-container {
-  border-bottom: 2px solid #eee;
-  border-top: 1px solid #eee;
-  margin: 20px auto;
 }
 .article-input {
   width: 50%;
@@ -298,8 +293,7 @@ margin-right: 10px;
   background-color: #fff;
 }
 .article img,
-.blog-abstract img,
-.article-reply-container img{
+.blog-abstract img {
   max-width: 100%;
 }
 .blog-abstract img,

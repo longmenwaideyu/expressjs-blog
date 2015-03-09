@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
     , ObjectId = Schema.ObjectId;
 var CollectSchema = new Schema({  
     collect: { type: String },
-    articleID: { type: String },
+    articleID: { type: Number },
     title: { type: String },
     seq: { type: Number },
     createTime: { type: Date, default: Date.now }

@@ -23,10 +23,14 @@ router.get('/admin', function(req, res) {
     ], function (err, rs) {
         var map = {};
         for (var i = rs[1].length - 1; i >= 0; i--) {
-            map[rs[1][i].articleID] = rs[1][i].title;
+            map[rs[1][i].articleID] = {
+				title: rs[1][i].title,
+				customURL: rs[1][i].customURL
+			};
         }
         for (var i = rs[0].length - 1; i >= 0; i--) {
-            rs[0][i].article = map[rs[0][i].articleID];
+            rs[0][i].title = map[rs[0][i].articleID].title;
+            rs[0][i].customURL =  map[rs[0][i].articleID].customURL;
             if (rs[0][i].replyWhoNick == '**') {
                 rs[0][i].replyWhoNick = '你';
             }
