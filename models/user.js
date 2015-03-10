@@ -21,4 +21,5 @@ UserSchema.statics.findNickByID = function  (userID, callback) {
             }
     });
 }
+
 module.exports = mongoose.model('User', UserSchema); 

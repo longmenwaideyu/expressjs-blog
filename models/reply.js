@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
     , Schema = mongoose.Schema  
     , ObjectId = Schema.ObjectId;
 var autoinc  = require('mongoose-id-autoinc');
-var ReplySchema = new Schema({  
+var ReplySchema = new Schema({
     email: { type: String },
     nick: { type: String },
     website: { type: String },
@@ -11,7 +11,7 @@ var ReplySchema = new Schema({
     replyWhoID: { type: Number },
     replyWhoNick: { type: String },
     replyWhoWebsite: { type: String },
-    replyFloor: { type: Number },
+    replyFloor: { type: Number },//留言压缩所用，他显示在第几个replyID内部
     isPass: { type: Number, default: 1 },
     userID: { type: String, default: '' },
     replyTime: { type: Date, default: Date.now }

@@ -2,6 +2,7 @@ var util = {};
 var cheerio = require('cheerio');
 var Collect = require('../models/collect');
 var Blog = require('../models/blog');
+var nodemailer = require('nodemailer');
 util.isEmail = function (email) {
     var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     return reg.test(email);
@@ -104,5 +105,28 @@ util.getCollectArr = function(doc, callback) {
         }
         callback(doc);
     })
+}
+/**
+ * @param {String} subject：发送的主题
+ * @param {String} html：发送的 html 内容
+ */
+util.sendMail = function(to, subject, html) {
+    var smtpTransport = nodemailer.createTransport('SMTP', config.mailConfig);
+    var mailOptions = {
+        from: config.mailConfig.auth.user,
+        to: to,
+        subject: subject,
+        html: html
+    };
+
+    smtpTransport.sendMail(mailOptions, function(error, response){
+        if (error) {
+            console.log(error);
+        }
+        smtpTransport.close();
+    });
+};
+util.clone = function (json) {
+    return JSON.parse(JSON.stringify(json));
 }
 module.exports = util;

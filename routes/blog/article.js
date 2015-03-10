@@ -15,21 +15,29 @@ function fail(req, res, data) {
 function recordVisit(articleID, callback) {
     Blog.updateVisit(articleID, 1, callback);
 }
-function genReply(doc) {
+function genReply(doc, article) {
     var floor = [];
     var floorMap = {};
     var len = doc.length;
     for (var i = 0; i < len; i++) {
-        if (doc[i].replyWhoID == -1) {
-            doc[i].replyArr = [];
-            doc[i].replyTime1 = util.getDate(doc[i].replyTime);
-            floor.push(doc[i]);
-            floorMap[doc[i].replyID] = i;
+        var item = util.clone(doc[i]);
+        delete item.__v;
+        delete item._id;
+        delete item.email;
+        delete item.userID;
+        delete item.isPass;
+        //item.articleID = article.articleID;
+        item.customURL = article.customURL;
+        item.replyTime = util.getDate(item.replyTime);
+        item.dataStr = JSON.stringify(item);
+        if (item.replyWhoID == -1) {
+            item.replyArr = [];
+            floor.push(item);
+            floorMap[item.replyID] = i;
         } else {
-            var f = floorMap[doc[i].replyFloor];
+            var f = floorMap[item.replyFloor];
             if (f == null || f == undefined) continue;
-            doc[i].replyTime1 = util.getDate(doc[i].replyTime);
-            floor[f].replyArr.push(doc[i]);
+            floor[f].replyArr.push(item);
         }
     }
     return floor;
@@ -62,7 +70,7 @@ router.get('/article/:id', function(req, res) {
         },
         function (doc, callback) {
             Reply.findByArticleID(doc.articleID, function (reply) {
-                reply = genReply(reply);
+                reply = genReply(reply, doc);
                 callback(null, doc, reply);
             });
         },
@@ -87,7 +95,6 @@ router.get('/article/:id', function(req, res) {
             fail(req, res, err);
             return;
         }
-
         res.render('blog/article', {
             title: doc.title,
             article: doc,

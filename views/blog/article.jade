@@ -42,7 +42,7 @@ block content
                                 div.col-sm-8
                                     a(href = '#{val.website}' target = '_blank')= val.nick
                                     |  说:
-                                div.col-sm-4.text-right.article-reply-time= val.replyTime1
+                                div.col-sm-4.text-right.article-reply-time= val.replyTime
                             div.article-reply-content!= val.content
                             each r in val.replyArr
                                 div.article-reply-floor
@@ -50,23 +50,17 @@ block content
                                         div.col-sm-8
                                             a(href = '#{r.website}' target = '_blank')= r.nick
                                             |  回复:  #{r.replyWhoNick}
-                                        div.col-sm-4.text-right.article-reply-time= r.replyTime1
+                                        div.col-sm-4.text-right.article-reply-time= r.replyTime
                                     div.article-reply-content!= r.content
                                     div.article-reply-btn
-                                        button.btn.btn-default.btn-xs(id = 'reply-#{r.replyID}' 
-                                            replyWhoID = '#{r.replyID}' replyFloor = '#{val.replyID}'
-                                            replyWhoNick = '#{r.nick}' replyWhoWebsite = '#{r.website}'
-                                            articleID = '#{article.articleID}' 
-											customURL = '#{article.customURL}'
-                                            ) 回复
+                                        button.btn.btn-default.btn-xs(id = 'reply-#{r.replyID}'
+                                            data-reply='#{r.dataStr}'
+                                            replyWhoID="#{r.replyID}") 回复
                                     div.hide(id = 'container-#{r.replyID}')
                             div.article-reply-btn
                                 button.btn.btn-primary.btn-xs(id = 'reply-#{val.replyID}' 
-                                replyWhoID = '#{val.replyID}' replyFloor = '#{val.replyID}'
-                                        replyWhoNick = '#{val.nick}' replyWhoWebsite = '#{val.website}'
-                                    articleID = '#{article.articleID}' 
-									customURL = '#{article.customURL}'
-                                    ) 回复
+                                    data-reply='#{val.dataStr}'
+                                    replyWhoID="#{val.replyID}") 回复
                             div.hide(id = 'container-#{val.replyID}')
                 form(class = 'form-horizontal article-reply row' action = '/reply' onsubmit='javascript: return check();')
                     div.form-group

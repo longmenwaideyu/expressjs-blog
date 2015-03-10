@@ -17,13 +17,18 @@ function use (app) {
     var edit = require('./routes/blog/edit');
     var doEdit = require('./routes/blog/doEdit');
     var admin = require('./routes/admin');
-
+    var staticPath = '';
+    if (config.serverPlatform.platform == 'local') {
+        staticPath = path.join(__dirname, 'public');
+    } else {
+        staticPath = config.serverPlatform.buckect;
+    }
     app.use('/ueditor/ue', ueditor({
         configFile: '/ueditor/nodejs/config.json',
         mode: config.serverPlatform.platform,
         AccessKey: config.serverPlatform.AccessKey,
         SecrectKey: config.serverPlatform.SecrectKey,
-        staticPath: path.join(__dirname, 'public'),
+        staticPath: staticPath,
         dynamicPath: '/uploadimage'
     }));
     app.use('/', routes);
