@@ -16,19 +16,31 @@ function sendMail (val, req) {
 }
 router.get('/reply', function(req, res) {
     var query = req.query;
-    var val = JSON.parse(query.data_reply);
-    val.content = query.editorValue;
-    val.replyWhoID = val.replyID;
-    val.replyWhoNick = val.nick;
-    val.replyWhoWebsite = val.website;
-    delete val.replyID;
-    delete val.replyTime;
+    var val = {};
+    if (query.data_reply) {
+        val = JSON.parse(query.data_reply);
+        val.content = query.editorValue;
+        val.replyWhoID = val.replyID;
+        val.replyWhoNick = val.nick;
+        val.replyWhoWebsite = val.website;
+        if (val.replyFloor == -1) {//这是本楼楼主
+            val.replyFloor = val.replyID;
+        }
+        delete val.replyID;//这两个都是上一楼的,无用了
+        delete val.replyTime;//
+    } else {
+        //新楼的处理
+        val.content = query.editorValue;
+        val.articleID = query.articleID;
+        val.customURL = query.customURL;
+    }
     if (!val.replyWhoID) {
         val.replyWhoID = -1;
         val.replyFloor = -1;
         val.replyWhoNick = '**';
         val.replyWhoWebsite = '/';
     }
+    //加入本层的信息
     val.website = query.website.trim();
     val.nick = query.nick.trim();
     val.email = query.email.trim();
@@ -41,6 +53,7 @@ router.get('/reply', function(req, res) {
         && val.website.indexOf('javascript:void(0)') == 0) {
         val.website = 'http://' + val.website;
     }
+    //标记是博主的回复
     if (req.session.isMe) {
          val.userID = req.session.userInfo.userID;
          val.nick = req.session.userInfo.nick;

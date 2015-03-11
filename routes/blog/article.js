@@ -26,10 +26,12 @@ function genReply(doc, article) {
         delete item.email;
         delete item.userID;
         delete item.isPass;
-        //item.articleID = article.articleID;
         item.customURL = article.customURL;
         item.replyTime = util.getDate(item.replyTime);
+        var content = item.content;
+        delete item.content;
         item.dataStr = JSON.stringify(item);
+        item.content = content;
         if (item.replyWhoID == -1) {
             item.replyArr = [];
             floor.push(item);
