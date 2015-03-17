@@ -1,4 +1,4 @@
-﻿expressjs-blog
+﻿expressjs-blog(初步定名为FishBlog)
 ==============
 
 ##用expressjs开发的个人博客系统
