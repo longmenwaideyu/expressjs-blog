@@ -39,4 +39,4 @@
 注册成功之后注释掉useRoutes.js的63-66行。
 ###6.到 /admin 下管理博客
 ##作者个人博客
-[longmenwaideyu.cn](http://longmenwaideyu.cn)
+[longmenwaideyu.com](http://longmenwaideyu.com)
