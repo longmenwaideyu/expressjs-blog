@@ -1,6 +1,7 @@
 var util = {};
 var cheerio = require('cheerio');
 var Collect = require('../models/collect');
+var Tag = require('../models/tag');
 var Blog = require('../models/blog');
 var nodemailer = require('nodemailer');
 util.isEmail = function (email) {
@@ -26,6 +27,18 @@ util.getArticleNum = function (callback) {
             callback(doc.length);
         });
     }
+}
+/**
+ * 标签和文集栏的数据
+ * @param  {Function} callback [description]
+ * @return {[type]}            [description]
+ */
+util.getSidebarInfo = function (callback) {
+    Tag.findAllTag(function (tags) {
+        Collect.findAllCollect(function (collects) {
+                callback({ tags: tags, collects: collects });
+        });
+    });
 }
 util.getSEODescription = function (doc) {
     var $ = cheerio.load(doc.content);

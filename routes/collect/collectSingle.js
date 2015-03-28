@@ -42,20 +42,13 @@ router.get('/collect/cid/:id', function(req, res) {
                 callback(null, doc);
             });
         },
+        //右侧边栏数据
         function (doc, callback){
-            //右侧侧边栏数据
-            Tag.findAllTag(function (tags) {
-                callback(null, doc, tags);
-            });
-        },
-        function (doc, tags, callback) {
-            //右侧侧边栏数据
-            Collect.findAllCollect(function (collects) {
-                callback(null, doc, tags, collects);
+            util.getSidebarInfo(function (data) {
+                callback(null, doc, data.tags, data.collects);
             });
         }
         ], function (err, doc, tags, collects) {
-
             res.render('collect/collectSingle', {
                 title: collect,
                 doc: doc,

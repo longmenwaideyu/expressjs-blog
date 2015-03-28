@@ -30,28 +30,19 @@ router.get('/tag/:tag', function(req, res) {
                 callback(null, doc);
             });
         },
+        //右侧边栏数据
         function (doc, callback){
-            //右侧侧边栏数据
-            Tag.findAllTag(function (tag) {
-                callback(null, [ doc, tag ]);
-            });
-        },
-        function (rs, callback) {
-            //右侧侧边栏数据
-            Collect.findAllCollect(function (collect) {
-                rs.push(collect);
-                callback(null, rs);
+            util.getSidebarInfo(function (data) {
+                callback(null, doc, data.tags, data.collects);
             });
         }
-    ], function (err, rs) {
-//        console.log(rs);
-        //console.log(rs[0]);
+    ], function (err, doc, tags, collects) {
         res.render('blog/tag', {
             title: config.blogName,
             isMe : req.session.isMe,
-            doc: rs[0],
-            tags: rs[1],
-            collects: rs[2]
+            doc: doc,
+            tags: tags,
+            collects: collects
         });
     });    
 });

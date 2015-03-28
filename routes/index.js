@@ -44,18 +44,13 @@ router.get('/', function(req, res) {
                 callback(null, totPage);
             });
         },
-        function (callback){
-            Tag.findAllTag(function (tag) {
-                callback(null, tag);
+        function (callback) {
+            util.getSidebarInfo(function (data) {
+                callback(null, data);
             });
         },
         function (callback) {
-            Collect.findAllCollect(function (collect) {
-                callback(null, collect);
-            });
-        },
-        function (callback) {
-            //加工一下本页的文章
+            //加工一下本页的文章 rs[2]
             Blog.findByPage(page, function (doc) {
                 doc = util.getAbstract(doc);
                 doc = util.getTagArr(doc);
@@ -65,7 +60,7 @@ router.get('/', function(req, res) {
             });
         },
         function (callback) {
-            //博主信息
+            //博主信息，目前只有文章数量 rs[3]
             util.getArticleNum(function (articleNum) {
                 callback(null, articleNum);
             });
@@ -74,11 +69,11 @@ router.get('/', function(req, res) {
         res.render('index', {
             title: config.blogName,
             isMe : req.session.isMe,
-            doc: rs[3],
-            tags: rs[1],
-            collects: rs[2],
+            doc: rs[2],
+            tags: rs[1].tags,
+            collects: rs[1].collects,
             totPage: rs[0],
-            articleNum: rs[4],
+            articleNum: rs[3],
             curPage: parseInt(page)
         });
     });

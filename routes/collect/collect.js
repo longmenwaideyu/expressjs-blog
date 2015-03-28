@@ -41,25 +41,19 @@ router.get('/collect', function(req, res) {
             });
 
         },
-        //右侧边栏的数据
+        //右侧边栏数据
         function (doc, callback){
-            Tag.findAllTag(function (tag) {
-                callback(null, doc, tag);
-            });
-        },
-        function (doc, tag, callback) {
-            Collect.findAllCollect(function (collect) {
-                callback(null, doc, tag, collect);
+            util.getSidebarInfo(function (data) {
+                callback(null, doc, data.tags, data.collects);
             });
         }
-    ], function (err, doc, tag, collect) {
-        //console.log(rs);
+    ], function (err, doc, tags, collects) {
         res.render('collect/collect', {
             title: config.blogName,
             isMe : req.session.isMe,
             doc: doc,
-            tags: tag,
-            collects: collect
+            tags: tags,
+            collects: collects
         });
     });
 });

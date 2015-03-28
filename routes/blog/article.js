@@ -83,16 +83,11 @@ router.get('/article/:id', function(req, res) {
         },
         //右侧边栏数据
         function (doc, reply, callback){
-            Tag.findAllTag(function (tag) {
-                callback(null, doc, reply, tag);
-            });
-        },
-        function (doc, reply, tag, callback) {
-            Collect.findAllCollect(function (collect) {
-                callback(null, doc, reply, tag, collect);
+            util.getSidebarInfo(function (data) {
+                callback(null, doc, reply, data.tags, data.collects);
             });
         }
-    ], function (err, doc, reply, tag, collect) {
+    ], function (err, doc, reply, tags, collects) {
         if (err) {
             fail(req, res, err);
             return;
@@ -101,8 +96,8 @@ router.get('/article/:id', function(req, res) {
             title: doc.title,
             article: doc,
             reply: reply,
-            tags: tag,
-            collects: collect,
+            tags: tags,
+            collects: collects,
             isMe: req.session.isMe,
             replyID: req.query.replyID
         });
