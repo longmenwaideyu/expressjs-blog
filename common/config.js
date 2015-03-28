@@ -2,13 +2,13 @@
     blogName: '龙门外的鱼·博客',
     aPageNum: 10,
     dbUser: 'root',
-    dbPass: 'Yy19910223',
-    dbAddress: '182.92.215.77',
+    dbPass: 'root',
+    dbAddress: '182.111.111.111',
     dbName: 'blog',
     serverPlatform: {
         platform: 'local',
-        AccessKey: 'AdGlhYkMA1khQ1jq3uZMZF14',
-        SecrectKey: 'oiUqt1VpH3fddPSWmRWjDwTIWudSMxof',
+        AccessKey: 'x',
+        SecrectKey: 'x',
         buckect: ''
     },
     mailConfig: {

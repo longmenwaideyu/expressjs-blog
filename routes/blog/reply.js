@@ -3,16 +3,20 @@ var router = express.Router();
 var Reply = require('../../models/reply');
 var Blog = require('../../models/blog');
 var util = require('../../common/util');
-var URL = require('url');
 function fail(res, data) {
     res.render('blog/reply', { data: data });
 }
 function sendMail (val, req) {
-    var p = URL.parse(req.url); 
-    var html = [val.nick, ' 在 ', config.blogName, ' 回复您:<br/>',
-        val.content, '<br/><a href="', p.protocol, '//', p.host, '/',
+    var subject = ['新回复通知[', req.hostname, ']'].join();
+    var html = [val.nick, ' 在 ', config.blogName, '[', req.hostname, '] 回复您:<br/>',
+        val.content, '<br/><a href="', req.protocol, '//', req.hostname, '/',
         val.customURL, '?replyID=', val.replyWhoID, '" target="_blank">详情请点击这里<a/>',
         '<br/><strong>请不要直接回复此邮件</strong>'].join('');
+    Reply.findEmailByReplyID(val.replyWhoID, function (email) {
+        if (email) {
+            util.sendMail(email, subject, html);
+        }
+    });
 }
 router.get('/reply', function(req, res) {
     var query = req.query;

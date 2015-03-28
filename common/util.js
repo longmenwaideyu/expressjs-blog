@@ -131,7 +131,6 @@ util.sendMail = function(to, subject, html) {
         subject: subject,
         html: html
     };
-
     smtpTransport.sendMail(mailOptions, function(error, response){
         if (error) {
             console.log(error);

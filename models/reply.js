@@ -49,4 +49,14 @@ ReplySchema.statics.findByArticleID = function(id, callback) {
             }
         });
 }
+ReplySchema.statics.findEmailByReplyID = function (replyID, callback) {
+    return this.model('Reply')
+        .find({ replyID: replyID }, function (err, doc) {
+            if (err) {
+                callback('');
+            } else {
+                callback(doc[0].email);
+            }
+        });
+}
 module.exports = mongoose.model('Reply', ReplySchema); 
