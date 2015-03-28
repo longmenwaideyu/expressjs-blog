@@ -17,19 +17,19 @@ function use (app) {
     var edit = require('./routes/blog/edit');
     var doEdit = require('./routes/blog/doEdit');
     var admin = require('./routes/admin');
-    var staticPath = '';
+    var dynamicPath = '';
     if (config.serverPlatform.platform == 'local') {
-        staticPath = path.join(__dirname, 'public');
+        dynamicPath = '/uploadimage'
     } else {
-        staticPath = config.serverPlatform.buckect;
+        dynamicPath = config.serverPlatform.buckect;
     }
     app.use('/ueditor/ue', ueditor({
         configFile: '/ueditor/nodejs/config.json',
         mode: config.serverPlatform.platform,
-        AccessKey: config.serverPlatform.AccessKey,
-        SecrectKey: config.serverPlatform.SecrectKey,
-        staticPath: staticPath,
-        dynamicPath: '/uploadimage'
+        accessKey: config.serverPlatform.AccessKey,
+        secrectKey: config.serverPlatform.SecrectKey,
+        staticPath: path.join(__dirname, 'public'),
+        dynamicPath: dynamicPath
     }));
     app.use('/', routes);
     app.use('/login', login);
