@@ -7,10 +7,11 @@ function fail(res, data) {
     res.render('blog/reply', { data: data });
 }
 function sendMail (val, req) {
+    if (val.replyWhoID == -1) return;
+    var url = req.protocol + '://' + req.hostname + '/article/' + val.customURL + '?replyID=' + val.replyWhoID;
     var subject = ['新回复通知[', req.hostname, ']'].join();
     var html = [val.nick, ' 在 ', config.blogName, '[', req.hostname, '] 回复您:<br/>',
-        val.content, '<br/><a href="', req.protocol, '//', req.hostname, '/',
-        val.customURL, '?replyID=', val.replyWhoID, '" target="_blank">详情请点击这里<a/>',
+        val.content, '<br/><a href="', url, '" target="_blank">详情请点击', url, '<a/>',
         '<br/><strong>请不要直接回复此邮件</strong>'].join('');
     Reply.findEmailByReplyID(val.replyWhoID, function (email) {
         if (email) {
