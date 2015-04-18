@@ -25,17 +25,17 @@ html
             })();
         block cssjs
     body
-        div.blog-header
-            div.blog-header-title
-                h2= config.blogName
-                p= config.motto
-            ul(class="blog-header-nav container")
-                li(role="presentation")
+        div.container
+            div.blog-header-title.row
+                //h2= config.blogName
+                //p= config.motto
+            ul(class="blog-header-nav row")
+                li
                     a(href="/") 首页
-                li(role="presentation")
+                li
                     a(href="/collect") 文集
-                li(role="presentation")
-                    if isMe
+                if isMe
+                    li
                         a(href='/admin' title="管理页")
                             span.glyphicon.glyphicon-user
         div.container

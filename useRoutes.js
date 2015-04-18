@@ -19,7 +19,13 @@ function use (app) {
     var admin = require('./routes/admin');
     var dynamicPath = '';
     if (config.serverPlatform.platform == 'local') {
-        dynamicPath = '/uploadimage'
+        dynamicPath = function (req) {
+            if (req.session.isMe) {
+                return '/uploadimage'
+            } else {
+                return '/visitorimage'
+            }
+        }
     } else {
         dynamicPath = config.serverPlatform.buckect;
     }
