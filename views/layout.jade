@@ -41,17 +41,10 @@ html
             block content
         footer.footer
             div.container
-                div.row
-                    div.col-sm-6
-                        h3 关于我
-                        a(href='#{config.otherBlog.url}' target="_blank")= config.otherBlog.name
-                        p= config.email.replace('@', '[at]').replace('.', '[dot]')
-                    div.col-sm-6
-                        h3 友情连接
-                        each val in config.friendlyLinks
-                            span.footer-col
-                                a(href='#{val.url}' target="_blank")= val.name
-                div.row.text-center
+                p.text-center
+                    ©#{config.ownerName} Powered by
+                    a(href="http://longmenwaideyu.com" target="_blank") 龙门外的鱼
+                p.text-center
                     a(href='http://www.miibeian.gov.cn/' target="_blank")= config.ICPNumber
 
 

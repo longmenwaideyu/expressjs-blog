@@ -19,6 +19,7 @@ function genReply(doc, article) {
     var floor = [];
     var floorMap = {};
     var len = doc.length;
+    var idx = 0;
     for (var i = 0; i < len; i++) {
         var item = util.clone(doc[i]);
         delete item.__v;
@@ -35,7 +36,7 @@ function genReply(doc, article) {
         if (item.replyWhoID == -1) {
             item.replyArr = [];
             floor.push(item);
-            floorMap[item.replyID] = i;
+            floorMap[item.replyID] = idx++;
         } else {
             var f = floorMap[item.replyFloor];
             if (f == null || f == undefined) continue;

@@ -10,3 +10,11 @@ div.blog-box
     each v, index in collects
         div(class="blog-tag-color#{v % 4}")
             a(href="/collect/cid/#{index}")= index + '(' + v + ')'
+div.blog-box
+    div.blog-box-title
+        div.blog-box-titlein 友情连接
+    ul.friendly-links-ul
+        each v, index in config.friendlyLinks
+            li(class="friendly-links#{index % 2}")
+                span.glyphicon.glyphicon-star
+                a(href="#{v.url}")= v.name

@@ -5,6 +5,7 @@
     dbUser: 'root',//dbUser填写 '' 说明数据库和本博客在同一台机器
     dbPass: '1234',
     dbAddress: '111.111.111.111',
+    dbPort: '27017',
     dbName: 'blog',
     ownerName: '龙门外的鱼',//个人姓名，显示在博主信息中
     ownerLocation: '',//所在地，显示在博主信息中

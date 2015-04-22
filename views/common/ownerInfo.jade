@@ -18,7 +18,13 @@ div.blog-box
                 =articleNum
         tr
             td(colspan="2")
+                strong 邮箱：
+                =config.email
+        tr
+            td(colspan="2")
                 strong 专长:  
                 =config.ownerSkill
-    h4 座右铭:
-    p= config.motto
+        tr
+            td(colspan="2")
+                strong 座右铭:
+                p= config.motto
