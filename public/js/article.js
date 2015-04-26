@@ -45,7 +45,13 @@ $(document).ready(function() {
         //console.log(e);
         processReplyBox(this);
     });
+    makeOutline();
 });
+function makeOutline() {
+    $("#article_id h1,h2,h3,h4,h5").each(function(e) {
+        $(this).attr("id", this.tagName.toLowerCase() + '_' + $(this).text().replace(/[\r|\n| |\'|\"|\\|\/]/g, ""));
+    });
+}
 function processReplyBox(me) {
     var replyWhoID = $(me).attr('replyWhoID');
     if ($('#reply-' + replyWhoID).text() == '回复') {

@@ -87,18 +87,24 @@ router.get('/article/:id', function(req, res) {
             util.getSidebarInfo(function (data) {
                 callback(null, doc, reply, data.tags, data.collects);
             });
+        },
+        function (doc, reply, tags, collects, callback) {
+            var data = util.getOutline(doc);
+            callback(null, doc, reply, tags, collects, data);
         }
-    ], function (err, doc, reply, tags, collects) {
+    ], function (err, doc, reply, tags, collects, outline) {
         if (err) {
             fail(req, res, err);
-            return;
+            return; 
         }
+        console.log(outline)
         res.render('blog/article', {
             title: doc.title,
             article: doc,
             reply: reply,
             tags: tags,
             collects: collects,
+            outline: outline,
             isMe: req.session.isMe,
             replyID: req.query.replyID
         });

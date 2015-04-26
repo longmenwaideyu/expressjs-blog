@@ -36,6 +36,11 @@ margin-right: 10px;
   margin-right: 20px;
   float: left;
 }
+.search-box {
+  float: left;
+  width: 100%;
+  margin-bottom: 30px;
+}
 .blog-header-title {
   text-align: center;
   color: #00baf0;
@@ -107,7 +112,7 @@ margin-right: 10px;
 }
 .blog-box {
   float: left;
-  //width: 100%;
+  width: 102%;
   margin-bottom: 30px;
   margin-right: -15px;
   //background-color: #eee;
@@ -172,6 +177,7 @@ margin-right: 10px;
 .blog-tag-color3 a,
 .blog-tag-color0 a {
   color: #FFF;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
 .blog-tag-color1 a:hover,
 .blog-tag-color2 a:hover,
@@ -186,9 +192,11 @@ margin-right: 10px;
 .blog-tag-color0 a:visited {
   color: #FFF;
   text-decoration:none;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
 .blog-owner-table {
   margin: 3px 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
 .blog-owner-table td {
   padding: 1px 0;
@@ -416,4 +424,55 @@ margin-right: 10px;
 .admin-title {
   margin: auto;
   max-width: 600px;
+}
+.friendly-links-ul {
+  margin: 0;
+  padding: 0;
+}
+.friendly-links-ul span {
+  color: #FFF;
+  padding-right: 3px;
+}
+.friendly-links0 {
+  list-style-type:none;
+  float: left;
+  width: 47%;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 3px 3px 3px 3px;
+  margin: 1px;
+  border: 1px solid #ddd;
+  background-color: #3399FF;
+}
+.friendly-links1 {
+  list-style-type:none;
+  float: right;
+  width: 47%;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 3px 3px 3px 3px;
+  margin: 1px;
+  border: 1px solid #ddd;
+  background-color: #FF9933;
+}
+.friendly-links0 a,
+.friendly-links1 a {
+  color: #FFF;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+  text-decoration: none;
+}
+
+.outline-container {
+  border: 1px solid #39F;
+  margin-top: 5px;
+  padding-left: 3px;
+}
+.outline-0 {
+  margin-left: 0px;
+}
+.outline-1 {
+  margin-left: 15px;
+}
+.outline-2 {
+  margin-left: 30px;
 }
