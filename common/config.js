@@ -1,7 +1,7 @@
 ﻿var config = {
     blogName: '个人博客',
     headPicture: '/images/bg.png'
-    aPageNum: 10,//分页,一页显示多少文章.
+    aPageNum: 7,//分页,一页显示多少文章.
     dbUser: 'root',//dbUser填写 '' 说明数据库和本博客在同一台机器
     dbPass: '1234',
     dbAddress: '111.111.111.111',
