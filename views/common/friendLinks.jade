@@ -5,4 +5,4 @@ div.blog-box
         each v, index in config.friendlyLinks
             li(class="friendly-links#{index % 2}")
                 span.glyphicon.glyphicon-star
-                a(href="#{v.url}")= v.name
+                a(href="#{v.url}" target="_blank")= v.name

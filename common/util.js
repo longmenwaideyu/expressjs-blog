@@ -90,6 +90,28 @@ util.getAbstract = function (doc) {
     };
     return doc;
 }
+util.getOutline = function (doc) {
+    var $ = cheerio.load(doc.content);
+    var dom = $('h1,h2,h3,h4,h5');
+    var minH = 10
+    dom.each(function (i, item) {
+        var h = parseInt(item.name[1])
+        if (h < minH) {
+            minH = h
+        }
+    });
+    var html = '';
+    var hid = [0,0,0,0];
+    dom.each(function (i, item) {
+        var h = parseInt(item.name[1]) - minH;
+        if (h <= 2) {
+            var text = $(item).text();
+            text = text.replace(/[\r|\n]/g, " ")
+            html += '<p class="outline-' + h + '"><a href="#h' + (h + minH) + '_' + text.replace(/[\r|\n| |\'|\"|\\|\/]/g, "") + '">' + text + '</a></p>';
+        }
+    });
+    return html;
+}
 util.getTagArr = function (doc) {
     for (var i = doc.length - 1; i >= 0; i--) {
         doc[i].createTime1 = util.getDate(doc[i].createTime);

@@ -54,8 +54,7 @@ router.get('/reply', function(req, res) {
         return;
     }
     if (val.website.indexOf('http://') != 0
-        && val.website.indexOf('https://') != 0
-        && val.website.indexOf('javascript:void(0)') == 0) {
+        && val.website.indexOf('javascript:void(0)') != 0) {
         val.website = 'http://' + val.website;
     }
     //标记是博主的回复
@@ -63,6 +62,7 @@ router.get('/reply', function(req, res) {
          val.userID = req.session.userInfo.userID;
          val.nick = req.session.userInfo.nick;
     }
+    console.log(val);
     Reply.create(val, function (error) {
         if (error) {
             console.log(error);

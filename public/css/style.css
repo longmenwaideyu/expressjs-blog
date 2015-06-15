@@ -261,7 +261,7 @@ margin-right: 10px;
   color: #666;
 }
 .article-reply {
-  max-width: 600px;
+  max-width: 560px;
   margin: 0 auto;
 }
 .article-reply-info {
@@ -423,7 +423,7 @@ margin-right: 10px;
 }
 .admin-title {
   margin: auto;
-  max-width: 600px;
+  max-width: 560px;
 }
 .friendly-links-ul {
   margin: 0;

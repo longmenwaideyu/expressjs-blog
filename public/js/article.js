@@ -74,9 +74,9 @@ function genReply(me) {
     var data = $(me).attr('data-reply');
     var replyWhoID = $(me).attr('replyWhoID');
     var str = '<form action="/reply" onsubmit="javascript: return check(\'' + replyWhoID + '\')" class="form-horizontal article-reply row">'
-        +       '<div class="form-group"><label for="nick" class="col-sm-2 control-label">昵称:</label><div class="col-sm-10"><input type="text" id="nick' + replyWhoID + '" name="nick" placeholder="输入显示的昵称" class="form-control"></div></div>'
-        +       '<div class="form-group"><label for="email" class="col-sm-2 control-label">邮箱:</label><div class="col-sm-10"><input type="text" id="email' + replyWhoID + '" name="email" placeholder="输入邮箱，不公开" class="form-control"></div></div>'
-        +       '<div class="form-group"><label for="website" class="col-sm-2 control-label">网址:</label><div class="col-sm-10"><input type="text" id="website' + replyWhoID + '" name="website" placeholder="输入个人网站，可不填" class="form-control"></div></div>'
+        +       '<div class="row"><label for="nick" class="col-sm-2 control-label">昵称:</label><div class="col-sm-10"><input type="text" id="nick' + replyWhoID + '" name="nick" placeholder="输入显示的昵称" class="form-control"></div></div>'
+        +       '<div class="row"><label for="email" class="col-sm-2 control-label">邮箱:</label><div class="col-sm-10"><input type="text" id="email' + replyWhoID + '" name="email" placeholder="输入邮箱，不公开" class="form-control"></div></div>'
+        +       '<div class="row"><label for="website" class="col-sm-2 control-label">网址:</label><div class="col-sm-10"><input type="text" id="website' + replyWhoID + '" name="website" placeholder="输入个人网站，可不填" class="form-control"></div></div>'
         +       '<script id="editor-' + replyWhoID + '" type="text/plain" style="width:100%;height:200px;"></script>'
         +       '<input name = "data_reply" value = \'' + data + '\' class="hide"/>'
         +       '<div class="row"><div class="col-sm-offset-10 col-sm-2"><input id= "replybtn-' + replyWhoID + '" type="submit" value="提交" class="btn btn-primary btn-block"></div></div>'
@@ -111,9 +111,6 @@ function check(id) {
     var nick = $('#nick' + id).val().trim();
     var email = $('#email' + id).val().trim();
     var website = $('#website' + id).val().trim();
-    if (!website) {
-        $('#website' + id).val('javascript:void(0)');
-    }
     var content = UE.getEditor(editor).getContent().trim();
     if ($(content).text().trim().length < 10) {
         alert('留言过短,不少于十个字');
@@ -129,6 +126,9 @@ function check(id) {
         alert('请输入正确的邮箱');
         $(selecter).attr("disabled", false);
         return false;
+    }
+    if (!website) {
+        $('#website' + id).val('javascript:void(0)');
     }
     return true;
 }
