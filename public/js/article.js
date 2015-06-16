@@ -38,7 +38,7 @@ $(document).ready(function() {
     setTimeout(function () {
         var ue = UE.getEditor('editor', {
             elementPathEnabled : false,
-            toolbars: [["bold","italic","underline","fontborder","strikethrough",'superscript', 'subscript',"forecolor","backcolor","justifyleft","justifycenter","justifyright","justifyjustify","fontfamily","fontsize","simpleupload","emotion","insertcode","removeformat","unlink","link","undo","redo"]]
+            toolbars: [["bold","italic","underline","fontborder","strikethrough",'superscript', 'subscript',"forecolor","backcolor","justifyleft","justifycenter","justifyright","justifyjustify","fontfamily","fontsize","emotion","insertcode","removeformat","unlink","link","undo","redo"]]
         });
     }, 2000);
     $('button[id^=reply-]').click(function (e) {

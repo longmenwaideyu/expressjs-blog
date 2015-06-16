@@ -2,11 +2,11 @@ var config = {
     blogName: '个人博客',
     headPicture: '/images/bg.png',
     aPageNum: 7,//分页,一页显示多少文章.
-    dbUser: 'yuyue',//dbUser填写 '' 说明数据库和本博客在同一台机器
-    dbPass: '19910223',
-    dbAddress: '182.92.215.77',
+    dbUser: 'root',//dbUser填写 '' 说明数据库和本博客在同一台机器
+    dbPass: '1234',
+    dbAddress: '111.111.111.111',
     dbPort: '27017',
-    dbName: 'localblog',
+    dbName: 'blog',
     ownerName: '龙门外的鱼',//个人姓名，显示在博主信息中
     ownerLocation: '',//所在地，显示在博主信息中
     ownerOccupation: '-',//职业，显示在博主信息中
@@ -23,7 +23,7 @@ var config = {
         service: 'Gmail',//Gmail QQ QQex Yahoo Hotmail
         auth: {
             user: 'longmenwaideyu@gmail.com',
-            pass: 'yy19910223'
+            pass: 'abcd'
         }
     },
     otherBlog: {//你的其他博客，显示在页脚

@@ -17,6 +17,7 @@ block content
                         span!= val.content
                         p
                             a(href='/article/#{val.customURL}?replyID=#{val.replyID}') 查看
+                            a(href='javascript:void(0);' replyID="#{val.replyID}") 删除
         div.admin-title
             h3 文章列表
         div.admin-box
