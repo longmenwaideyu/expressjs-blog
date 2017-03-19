@@ -59,16 +59,9 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-var opts = {  
-    db: {  
-        native_parser: true  
-    },  
-    server: {  
-        poolSize:4,  
-        auto_reconnect: true
-    }
-};
-
-mongoose.connect('mongodb://' + config.dbUser + ':' + config.dbPass + '@' + config.dbAddress + ':' + config.dbPort + '/' +config.dbName);
-
+if (!config.dbUser) {
+    mongoose.connect('mongodb://' + config.dbAddress + '/' +config.dbName);
+} else {
+    mongoose.connect('mongodb://' + config.dbUser + ':' + config.dbPass + '@' + config.dbAddress + '/' +config.dbName);
+}
 module.exports = app;  

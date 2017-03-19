@@ -29,6 +29,11 @@ router.get('/admin', function(req, res) {
 			};
         }
         for (var i = rs[0].length - 1; i >= 0; i--) {
+            if(!map[rs[0][i].articleID]) {
+                //console.log("d", rs[0][i].articleID);
+                //console.log(rs[0][i]);
+                continue;
+            }
             rs[0][i].title = map[rs[0][i].articleID].title;
             rs[0][i].customURL =  map[rs[0][i].articleID].customURL;
             if (rs[0][i].replyWhoNick == '**') {
@@ -44,5 +49,15 @@ router.get('/admin', function(req, res) {
     });
 
 });
-
+router.get('/delete_reply', function (req, res) {
+    if (!req.session.isMe) {
+        res.redirect('/login');
+        return;
+    }
+    var body = req.query;
+    var replyID = body.replyID;
+    Reply.removeByReplyID(replyID, function(err) {
+        res.redirect('/admin');    
+    });
+});
 module.exports = router;

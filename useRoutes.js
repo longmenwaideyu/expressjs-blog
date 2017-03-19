@@ -53,9 +53,9 @@ function use (app) {
     app.use('/', edit);
     app.use('/', doEdit);
     app.use('/', admin);
-    var register = require('./routes/register');
-    var doRegister = require('./routes/doRegister');
-    app.use('/register', register);
-    app.use('/doRegister', doRegister);
+//    var register = require('./routes/register');
+//    var doRegister = require('./routes/doRegister');
+//    app.use('/register', register);
+//    app.use('/doRegister', doRegister);
 }
 module.exports = use;

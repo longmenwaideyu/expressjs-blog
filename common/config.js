@@ -1,38 +1,35 @@
-var config = {
-    blogName: '个人博客',
+﻿var config = {
+    blogName: '龙门外的鱼·博客',
     headPicture: '/images/bg.png',
-    aPageNum: 7,//分页,一页显示多少文章.
-    dbUser: 'root',//dbUser填写 '' 说明数据库和本博客在同一台机器
-    dbPass: '1234',
-    dbAddress: '111.111.111.111',
-    dbPort: '27017',
+    aPageNum: 10,//分页,一页显示多少文章.
+    dbUser: 'root',//如果填写''，则数据库和博客必须放在同一台机器上
+    dbPass: 'xxx',
+    dbAddress: '182.192.0.0',
+	dbPort: '27017',
     dbName: 'blog',
-    ownerName: '龙门外的鱼',//个人姓名，显示在博主信息中
-    ownerLocation: '',//所在地，显示在博主信息中
-    ownerOccupation: '-',//职业，显示在博主信息中
-    ownerSkill: '',//主要从事领域与技能，显示在博主信息中
-    motto: 'Thoughts, stories and ideas.',//座右铭，显示在博主信息中
+    ownerName: '龙门外的鱼',
+    ownerLocation: '北京',
+    ownerOccupation: '学生',
+    ownerSkill: 'c++，算法，高性能计算',
+    motto: '《孙子兵法》云：“求其上，得其中；求其中，得其下；求其下，必败。”  自己再菜，也不敢不求其上。',
     email: 'longmenwaideyu@126.com',
-    serverPlatform: {
+    serverPlatform: {//此项是百度云存储相关，百度云存储已经下线，请统一填写'local'
         platform: 'local',
-        AccessKey: 'xxx',//platform是local可以不填
-        SecrectKey: 'xxx',//platform是local可以不填
-        buckect: 'x' //bcs中的buckect名字
+        AccessKey: 'xxxxAdGlhYkMA1khQ1jq',
+        SecrectKey: 'xxxWmRWjDwTIWudSMxof',
+        buckect: ''
     },
-    mailConfig: {
-        service: 'Gmail',//Gmail QQ QQex Yahoo Hotmail
+    mailConfig: {//回复的邮件提醒服务
+        service: 'Yahoo',//Gmail QQ QQex Yahoo Hotmail
         auth: {
-            user: 'longmenwaideyu@gmail.com',
-            pass: 'abcd'
+            user: 'long@yahoo.com',
+            pass: 'xxx'
         }
     },
-    otherBlog: {//你的其他博客，显示在页脚
-        url: 'http://hi.baidu.com/longmenwaideyu',
-        name: '百度博客'
-    },
-    friendlyLinks: [//友情链接，显示在页脚
-        { url: 'http://hi.baidu.com/longmenwaideyu', name : '百度博客' }
+    friendlyLinks: [
+        { url: 'http://longmenwaideyu.com', name: '龙门外的鱼' },
+        { url: 'http://longmenwaideyu.com', name: '龙门外的鱼' }
     ],
-    ICPNumber: '京ICP备00000000号'//显示在页脚
+    ICPNumber: '京ICP备00000000号'
 }
 module.exports = config;

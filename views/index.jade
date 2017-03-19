@@ -1,8 +1,8 @@
 extends layout
 
 block content
-    div.row
-        div.col-sm-8
+    div(style="margin:0").row
+        div(style="padding:0").col-sm-8
             each val in doc
                 div.blog-container
                     div.blog-title
@@ -43,7 +43,7 @@ block content
                     else
                         li.disabled
                             a(href="javascript:void(0)") &raquo;
-        div.col-sm-4.hidden-xs
+        div(style="padding-right:0").col-sm-4.hidden-xs
             include ./common/ownerInfo.jade
             include ./common/sidebar.jade
             include ./common/friendLinks.jade

@@ -59,4 +59,9 @@ ReplySchema.statics.findEmailByReplyID = function (replyID, callback) {
             }
         });
 }
+ReplySchema.statics.removeByReplyID = function(replyID, callback) {
+    return this.model('Reply').remove({ replyID: replyID }, function (error) {
+        callback(error);
+    });
+}
 module.exports = mongoose.model('Reply', ReplySchema); 

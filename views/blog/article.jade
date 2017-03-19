@@ -14,7 +14,7 @@ block content
             h4 #{data}
                 a(href='/') 去看看其他文章吧
     else
-        div.row
+        div(style="margin:0").row
             div.col-sm-8
                 div.row.text-center
                     h3= article.title
@@ -62,7 +62,7 @@ block content
                                     data-reply='#{val.dataStr}'
                                     replyWhoID="#{val.replyID}") 回复
                             div.hide(id = 'container-#{val.replyID}')
-                form(class = 'form-horizontal article-reply row' action = '/reply' onsubmit='javascript: return check();')
+                form(class = 'form-horizontal article-reply row' action = '/reply' onsubmit='javascript: return check();' method="post")
                     div.form-group
                         label(for = 'nick' class = 'col-sm-2 control-label') 昵称:
                         div.col-sm-10
@@ -70,7 +70,7 @@ block content
                     div.form-group
                         label(for = 'email' class = 'col-sm-2 control-label') 邮箱:
                         div.col-sm-10
-                            input(type = 'text' id = 'email' name = 'email' placeholder = '输入邮箱，不公开').form-control
+                            input(type = 'text' id = 'email' name = 'email' placeholder = '输入邮箱，不公开，接收回复通知').form-control
                     div.form-group
                         label(for = 'website' class = 'col-sm-2 control-label') 网址:
                         div.col-sm-10

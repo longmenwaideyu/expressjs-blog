@@ -19,8 +19,8 @@ function sendMail (val, req) {
         }
     });
 }
-router.get('/reply', function(req, res) {
-    var query = req.query;
+router.post('/reply', function(req, res) {
+    var query = req.body;
     var val = {};
     if (query.data_reply) {
         val = JSON.parse(query.data_reply);

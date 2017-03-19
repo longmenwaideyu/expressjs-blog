@@ -1,5 +1,6 @@
 extends layout
-
+block cssjs
+    script(src="/js/admin.js")
 block content
     div.row.admin-title
         div.col-sm-4
@@ -16,8 +17,9 @@ block content
                         p #{val.nick} 在 《#{val.title}》 对 #{val.replyWhoNick} 说:
                         span!= val.content
                         p
-                            a(href='/article/#{val.customURL}?replyID=#{val.replyID}') 查看
-                            a(href='javascript:void(0);' replyID="#{val.replyID}") 删除
+                            span(style="margin-right:10px;")
+                                a(href='/article/#{val.customURL}?replyID=#{val.replyID}') 查看
+                            a(href='javascript:void(0)' class="del-reply" replyID="#{val.replyID}") 删除
         div.admin-title
             h3 文章列表
         div.admin-box

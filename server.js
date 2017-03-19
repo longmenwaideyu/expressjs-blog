@@ -1,9 +1,9 @@
-var fs = require('fs');
+﻿var fs = require('fs');
 var files = [
     'routes',
     'routes/blog',
     'routes/collect',
-    'common',
+    'common/config.js',
     'models',
     'app.js',
     'useRoutes.js'
@@ -45,5 +45,5 @@ setInterval(function () {
         console.log("重启");
         child.kill();
     }
-}, 2000);
+}, 10000);
 //*/

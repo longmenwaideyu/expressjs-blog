@@ -73,7 +73,7 @@ function showReply(me) {
 function genReply(me) {
     var data = $(me).attr('data-reply');
     var replyWhoID = $(me).attr('replyWhoID');
-    var str = '<form action="/reply" onsubmit="javascript: return check(\'' + replyWhoID + '\')" class="form-horizontal article-reply row">'
+    var str = '<form action="/reply" onsubmit="javascript: return check(\'' + replyWhoID + '\')" method="post" class="form-horizontal article-reply row">'
         +       '<div class="row"><label for="nick" class="col-sm-2 control-label">昵称:</label><div class="col-sm-10"><input type="text" id="nick' + replyWhoID + '" name="nick" placeholder="输入显示的昵称" class="form-control"></div></div>'
         +       '<div class="row"><label for="email" class="col-sm-2 control-label">邮箱:</label><div class="col-sm-10"><input type="text" id="email' + replyWhoID + '" name="email" placeholder="输入邮箱，不公开" class="form-control"></div></div>'
         +       '<div class="row"><label for="website" class="col-sm-2 control-label">网址:</label><div class="col-sm-10"><input type="text" id="website' + replyWhoID + '" name="website" placeholder="输入个人网站，可不填" class="form-control"></div></div>'
@@ -112,8 +112,8 @@ function check(id) {
     var email = $('#email' + id).val().trim();
     var website = $('#website' + id).val().trim();
     var content = UE.getEditor(editor).getContent().trim();
-    if ($(content).text().trim().length < 10) {
-        alert('留言过短,不少于十个字');
+    if ($(content).text().trim().length < 5) {
+        alert('留言过短,不少于五个字');
         $(selecter).attr("disabled", false);
         return false;
     }
